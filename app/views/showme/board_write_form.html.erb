@@ -4,36 +4,65 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <style type="text/css">
+  h2 {
+    text-align:center;
+  }
+  </style>
 </head>
 
 <body>
   <br><br><br><br>
 
   <div class="container">
-    <form action="/board_write" method="POST">
-      <div class="form-group">
-        <label for="inputTitle">글 제목</label>
-        <input type="text" class="form-control" id="inputTitle" name="title" placeholder="글 제목">
-      </div>
+    <div class="col-xs-2 col-sm-2 col-md-2"></div>
 
-      <div class="form-group">
-        <label for="inputContent">글 내용</label>
-        <textarea rows="10" cols="100" class="form-control" id="inputContent" name="content" placeholder="글 내용"></textarea>
-      </div>
+    <div class="col-xs-8 col-sm-8 col-md-8">
+      <h2> 음악 파일을 업로드 하세요! </h2>
+      <form action="/board_write" method="POST">
+        <div class="row">
+          <div class="form-group">
+            <label for="inputTitle">글 제목</label>
+            <input type="text" class="form-control" id="inputTitle" name="title" placeholder="글 제목">
+          </div>
+        </div>
 
-      <div class="form-group">
-        <label for="inputSinger">가수 이름</label>
-        <input type="text" class="form-control" id="inputSinger" name="singer" placeholder="가수 이름">
-      </div>
+        <div class="row">
+          <div class="form-group">
+            <label for="inputContent">글 내용</label>
+            <textarea rows="10" cols="100" class="form-control" id="inputContent" name="content" placeholder="글 내용"></textarea>
+          </div>
+        </div>
 
-      <div class="form-group">
-        <label for="inputSong">노래 제목</label>
-        <input type="text" class="form-control" id="inputSong" name="song" placeholder="노래 제목">
-      </div>
+        <div class="row">
+          <div class="col-xs-6 col-sm-6 col-md-6">
+            <div class="form-group">
+              <label for="inputSinger">가수 이름</label>
+              <input type="text" class="form-control" id="inputSinger" name="singer" placeholder="가수 이름">
+            </div>
+          </div>
 
+          <div class="col-xs-6 col-sm-6 col-md-6">
+            <div class="form-group">
+              <label for="inputSong">노래 제목</label>
+              <input type="text" class="form-control" id="inputSong" name="song" placeholder="노래 제목">
+            </div>
+          </div>
+        </div>
 
-      <button type="submit" class="btn btn-success"> 작성 </button>
-    </form>
+        <div class="row" style="margin-top:10px;">
+          <div class="form-group">
+            <label for="exampleInputFile"> 파일업로드</label>
+            <input type="file" id="exampleInputFile">
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:10px;">
+          <button type="submit" class="btn btn-success"> 작성 </button>
+        </div>
+      </form>
+    </div>
   </div>
 </body>
 </html>

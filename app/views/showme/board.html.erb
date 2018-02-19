@@ -24,6 +24,18 @@
            <th> 조회수 </th>
            <th> 추천수  </th>
         </tr>
+
+        <% @posts.each do |post| %>
+          <tr>
+            <td><%= post.id %></td>
+            <td><%= post.title %></td>
+            <td><%= post.singer %></td>
+            <td><%= post.song %></td>
+            <td> monki0120 </td>
+            <td> 1 </td>
+            <td> 0 </td>
+          </tr>
+        <% end %>
       </table>
 
       <a href="/showme/board_write_form" class="btn btn-success pull-right"> 글 쓰기 </a>
