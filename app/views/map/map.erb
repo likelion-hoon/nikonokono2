@@ -23,11 +23,6 @@
   <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 
   <script type="text/javascript">
-
-    $( document ).ready(function() {
-      initTmap();
-    });
-
     function initTmap() {
 
       // 1. 지도 띄우기
@@ -162,7 +157,7 @@
           console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
         }
       });
-    }
+    }   // initTmap 함수의 끝
 
     // function addMapSize() {
     //   var mapResize = document.getElementById('map_div'); //map의 div
@@ -176,11 +171,15 @@
     //   mapResize.style.height = '300px'; //map의 height 변경
     // }
 
-    // initTmap 함수의 끝
+    // 목적지 text를 지우는 함수
+    function eraseDestination() {
+      $('#desLocation').val(" ");
+    }
+
   </script>
 </head>
 
-<body>
+<body onload="initTmap()">
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -191,8 +190,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Nikonokono
-          <span class="glyphicon glyphicon-music" aria-hidden="true"></span></a>
+        <a class="navbar-brand" href="#">Brand</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -217,32 +215,30 @@
   <!-- navbar의 끝 -->
 
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-xs-8 col-sm-8 col-md-8" id="map_div">
+      <div class="col-xs-7 col-sm-7 col-md-7" id="map_div">
       </div>
 
-      <div id="aside" class="well">
-        <div class="col-xs-2 col-sm-2 col-md-2">
-          <div class="row">
-            <input type="text" name="myLocation" placeholder="나의 위치">
-            <input type="text" name="destLocation" placeholder="도착 위치">
+      <div class="container col-xs-3 col-sm-3 col-md-3" id="aside" style="margin-left:15px;">
+          <div class="row" style="margin-bottom:10px;">
+            <button class="btn btn-success btn-lg pull-left"> 현재위치 불러오기 </button>
+          </div>
+          <div class="row" style="margin-bottom:10px;">
+            <label for="desLocation"> 목적지 </label>
+            <input type="text" id="desLocation" name="desLocation" placeholder="목적지">
+          </div>
+
+          <div class="row" style="margin-bottom:10px;">
+              <button class="btn btn-success"> 길 찾기 </button>
+              <button class="btn btn-success"> 경유지추가 </button>
+              <button id="eraser" class="btn btn-success" onclick="eraseDestination()"> 지우기 </button>
           </div>
 
           <div class="row">
-            <button class="btn btn-success"> 길 찾기 </button>
+            <div id="info_aside" class="col-xs-12 col-sm-12 col-md-12 well" style="width:100%;height:588px">
+
+            </div>
           </div>
-
-          <div class="row">
-            <button class="btn btn-success"> 경유지추가 </button>
-            <button class="btn btn-success"> 지우기 </button>
-          </div>
-        </div>
       </div>
-
-      <div id="info_aside" class="well">
-
-      </div>
-    </div>
   </div>
 
   <!-- <button onclick="addMapSize()"> 지도 크게 </button>
