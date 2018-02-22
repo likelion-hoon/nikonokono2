@@ -1,282 +1,246 @@
-<!--
-
-    Browser Key
-
-    TDCProject Key : 6a71ac68-585d-4a6e-8f1d-3a6182dee409
-    ReferersAny referer allowed
-    Activated on2018-02-13 14:22:11
-
--->
+<!-- Browser Key TDCProject Key : 6a71ac68-585d-4a6e-8f1d-3a6182dee409 ReferersAny referer allowed Activated on2018-02-13 14:22:11 -->
 
 <!DOCTYPE html>
 <html>
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>Nikonokono Service</title>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Nikonokono Service</title>
 
-  <!-- jQuery library 불러오기 -->
-  <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- jQuery library 불러오기 -->
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 
-  <!-- Tmap 지도 api 불러오기 -->
-  <script src="https://api2.sktelecom.com/tmap/js?version=1&format=javascript&appKey=6a71ac68-585d-4a6e-8f1d-3a6182dee409"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- Tmap 지도 api 불러오기 -->
+    <script src="https://api2.sktelecom.com/tmap/js?version=1&format=javascript&appKey=6a71ac68-585d-4a6e-8f1d-3a6182dee409"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+    <script type="text/javascript">
 
-  <script type="text/javascript">
-
-  // 화면이 로드될때 시작하는 함수
-  $(document).ready(function() {
-    if(!navigator.geolocation) {
-      alert("사용자의 브라우저는 geolocation을 지원하지 않습니다.");
-      return;
-    } else {
-      var options={enableHighAccuracy:true};
-      navigator.geolocation.getCurrentPosition(initTmap,ErrorCall,options);
-    }
-  });
-
-  // getCurrentPoistion함수의 errorCallback함수
-  function ErrorCall(error) {
-    switch(error.code) {
-        case error.TIMEOUT:
-          alert("시간 제한을 초과했습니다.");
-          break;
-        case error.POSITION_UNAVAILABLE:
-          alert("현재 위치를 구할 수 없습니다.");
-          break;
-        case error.PERMISSION_DENIED:
-          alert("위치를 구할 수 있는 권한이 없습니다.");
-          break;
-        case error.UNKNOWN_ERROR:
-          alert("알 수 없는 에러가 발생하였습니다.");
-          break;
-        default:
-          alert(error.message);
-    }
-  }
-
-    function initTmap(position) {
-      var lat = position.coords.latitude;  // 위도
-      var lon = position.coords.longitude; // 경도
-
-      // 1. 지도 띄우기
-      var map = new Tmap.Map({
-        div: 'map_div',
-        width: "70%",
-        height: "700px",
+      // 화면이 로드될때 시작하는 함수
+      $(document).ready(function () {
+        if (!navigator.geolocation) {
+          alert("사용자의 브라우저는 geolocation을 지원하지 않습니다.");
+          return;
+        } else {
+          var options = {
+            enableHighAccuracy: true
+          };
+          navigator.geolocation.getCurrentPosition(initTmap, ErrorCall, options);
+        }
       });
 
-      map.setCenter(new Tmap.LonLat(lon, lat).transform("EPSG:4326", "EPSG:3857"), 16);
-      var routeLayer = new Tmap.Layer.Vector("route");
-      map.addLayer(routeLayer);
+      // getCurrentPoistion함수의 errorCallback함수
+      function ErrorCall(error) {
+        switch (error.code) {
+          case error.TIMEOUT:
+            alert("시간 제한을 초과했습니다.");
+            break;
+          case error.POSITION_UNAVAILABLE:
+            alert("현재 위치를 구할 수 없습니다.");
+            break;
+          case error.PERMISSION_DENIED:
+            alert("위치를 구할 수 있는 권한이 없습니다.");
+            break;
+          case error.UNKNOWN_ERROR:
+            alert("알 수 없는 에러가 발생하였습니다.");
+            break;
+          default:
+            alert(error.message);
+        }
+      }
 
-      // Tmap.Control를 사용하여 지도를 키보드로 컨트롤 할 수 있는 기능을 추가합니다.
-      map.addControls([
-        new Tmap.Control.KeyboardDefaults() //키보드로 지도 컨트롤
-      ]);
+      function initTmap(position) {
+        var lat = position.coords.latitude; // 위도
+        var lon = position.coords.longitude; // 경도
 
-      // 2. 시작, 도착 심볼찍기
-      // 시작
-      var markerStartLayer = new Tmap.Layer.Markers("start");
-      map.addLayer(markerStartLayer);
+        // 1. 지도 띄우기
+        var map = new Tmap.Map({div: 'map_div', width: "70%", height: "700px"});
 
-      var size = new Tmap.Size(24, 38);
-      var offset = new Tmap.Pixel(-(size.w / 2), -size.h);
+        map.setCenter(new Tmap.LonLat(lon, lat).transform("EPSG:4326", "EPSG:3857"), 16);
+        var routeLayer = new Tmap.Layer.Vector("route");
+        map.addLayer(routeLayer);
 
-      // icon 만들때 size와 offset 변수 사용
-      var icon = new Tmap.IconHtml("<img src='http://tmapapis.sktelecom.com/upload/tmap/marker/pin_r_m_s.png' />", size, offset);
-      var marker_s = new Tmap.Marker(new Tmap.LonLat(lon, lat).transform("EPSG:4326", "EPSG:3857"), icon);
-      markerStartLayer.addMarker(marker_s);
-      //
-      // // 도착
-      // var markerEndLayer = new Tmap.Layer.Markers("end");
-      // map.addLayer(markerEndLayer);
-      //
-      // var size = new Tmap.Size(24, 38);
-      // var offset = new Tmap.Pixel(-(size.w / 2), -size.h);
-      // var icon = new Tmap.IconHtml("<img src='http://tmapapis.sktelecom.com/upload/tmap/marker/pin_r_m_e.png' />", size, offset);
-      // var marker_e = new Tmap.Marker(new Tmap.LonLat("126.997589", "37.570594").transform("EPSG:4326", "EPSG:3857"), icon);
-      // markerEndLayer.addMarker(marker_e);
-      //
-      // // 3. 경유지 심볼 찍기
-      // var markerWaypointLayer = new Tmap.Layer.Markers("waypoint");
-      // map.addLayer(markerWaypointLayer);
-      //
-      // var size = new Tmap.Size(24, 38);
-      // var offset = new Tmap.Pixel(-(size.w / 2), -size.h);
-      // var icon = new Tmap.IconHtml("<img src='http://tmapapis.sktelecom.com/upload/tmap/marker/pin_b_m_p.png' />", size, offset);
-      // var marker = new Tmap.Marker(new Tmap.LonLat("126.983072", "37.573028").transform("EPSG:4326", "EPSG:3857"), icon);
-      // markerWaypointLayer.addMarker(marker);
-      //
-      // var size = new Tmap.Size(24, 38);
-      // var offset = new Tmap.Pixel(-(size.w / 2), -size.h);
-      // var icon = new Tmap.IconHtml("<img src='http://tmapapis.sktelecom.com/upload/tmap/marker/pin_b_m_p.png' />", size, offset);
-      // var marker = new Tmap.Marker(new Tmap.LonLat("126.987319", "37.565778").transform("EPSG:4326", "EPSG:3857"), icon);
-      // markerWaypointLayer.addMarker(marker);
-      //
-      // // 4. 경로 탐색 API 사용요청 (경로 탐색 api를 따로 요청)
-      // var startX = 126.977022;
-      // var startY = 37.569758;
-      // var endX = 126.997589;
-      // var endY = 37.570594;
-      // var passList = "126.983072,37.573028_126.987319,37.565778";
-      // var prtcl;
-      // var headers = {};
-      // headers["appKey"] = "6a71ac68-585d-4a6e-8f1d-3a6182dee409";
-      // $.ajax({
-      //   method: "POST",
-      //   headers: headers,
-      //   url: "https://api2.sktelecom.com/tmap/routes?version=1&format=xml", //
-      //   async: false,
-      //   data: {
-      //     startX: startX,
-      //     startY: startY,
-      //     endX: endX,
-      //     endY: endY,
-      //     passList: passList,
-      //     reqCoordType: "WGS84GEO",
-      //     resCoordType: "EPSG3857",
-      //     angle: "172",
-      //   },
-      //   success: function(response) {
-      //     prtcl = response;
-      //
-      //     // 5. 경로 탐색  결과 Line 그리기
-      //     //경로 탐색  결과 POINT 찍기
-      //     /* -------------- Geometry.Point -------------- */
-      //     var pointLayer = new Tmap.Layer.Vector("point"); // 신규 벡터 레이어를 생성하는 클래스
-      //     var prtclString = new XMLSerializer().serializeToString(prtcl); // xml to String
-      //     xmlDoc = $.parseXML(prtclString),
-      //       $xml = $(xmlDoc),
-      //       $intRate = $xml.find("Placemark");
-      //     var style_red = {
-      //       fillColor: "#ff0000",
-      //       fillOpacity: 0.2,
-      //       strokeColor: "#ff0000",
-      //       strokeWidth: 3,
-      //       strokeDashstyle: "solid",
-      //       pointRadius: 2,
-      //       title: "this is a red line"
-      //     };
-      //     $intRate.each(function(index, element) {
-      //       var nodeType = element.getElementsByTagName("tmap:nodeType")[0].childNodes[0].nodeValue;
-      //       if (nodeType == "POINT") {
-      //         var point = element.getElementsByTagName("coordinates")[0].childNodes[0].nodeValue.split(',');
-      //         var geoPoint = new Tmap.Geometry.Point(point[0], point[1]);
-      //         var pointFeature = new Tmap.Feature.Vector(geoPoint, null, style_red);
-      //         pointLayer.addFeatures([pointFeature]);
-      //       }
-      //     });
-      //     map.addLayer(pointLayer);
-      //     /* -------------- Geometry.Point -------------- */
-      //     //경로 탐색  결과 Line 그리기
-      //     routeLayer.style = {
-      //       fillColor: "#0000ff",
-      //       fillOpacity: 0.2,
-      //       strokeColor: "#0000ff",
-      //       strokeWidth: 3,
-      //       strokeDashstyle: "solid",
-      //       pointRadius: 2,
-      //       title: "this is a blue line"
-      //     }
-      //     var kmlForm = new Tmap.Format.KML().read(prtcl);
-      //     routeLayer.addFeatures(kmlForm);
-      //
-      //
-      //     // 6. 경로탐색 결과 반경만큼 지도 레벨 조정
-      //     map.zoomToExtent(routeLayer.getDataExtent());
-      //   },
-      //
-      //   error: function(request, status, error) {
-      //     console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-      //   }
-      // });
-    }   // initTmap 함수의 끝
+        // Tmap.Control를 사용하여 지도를 키보드로 컨트롤 할 수 있는 기능을 추가합니다.
+        map.addControls([
+          new Tmap.Control.KeyboardDefaults() //키보드로 지도 컨트롤
+        ]);
 
-    // function addMapSize() {
-    //   var mapResize = document.getElementById('map_div'); //map의 div
-    //   mapResize.style.width = '70%'; //map의 width 변경
-    //   mapResize.style.height = '600px'; //map의 height 변경
-    // }
-    //
-    // function decreaseMapSize() {
-    //   var mapResize = document.getElementById('map_div'); //map의 div
-    //   mapResize.style.width = '70%'; //map의 width 변경
-    //   mapResize.style.height = '300px'; //map의 height 변경
-    // }
+        // 2. 시작, 도착 심볼찍기 시작
+        var markerStartLayer = new Tmap.Layer.Markers("start");
+        map.addLayer(markerStartLayer);
 
+        var size = new Tmap.Size(24, 38);
+        var offset = new Tmap.Pixel(-(size.w / 2), -size.h);
 
-    // 목적지 text를 지우는 함수
-    function eraseDestination() {
-      $('#desLocation').val(" ");
-    }
+        // icon 만들때 size와 offset 변수 사용
+        var icon = new Tmap.IconHtml("<img src='http://tmapapis.sktelecom.com/upload/tmap/marker/pin_r_m_s.png' />", size, offset);
+        var marker_s = new Tmap.Marker(new Tmap.LonLat(lon, lat).transform("EPSG:4326", "EPSG:3857"), icon);
+        markerStartLayer.addMarker(marker_s);
+        addMarkerLayer();
+        searchPOI();
 
-  </script>
-</head>
+        //
+        //  도착 var markerEndLayer = new Tmap.Layer.Markers("end"); map.addLayer(markerEndLayer);
+        //
+        // var size = new Tmap.Size(24, 38); var offset = new Tmap.Pixel(-(size.w / 2), -size.h); var icon = new Tmap.IconHtml("<img src='http://tmapapis.sktelecom.com/upload/tmap/marker/pin_r_m_e.png' />", size, offset); var marker_e = new Tmap.Marker(new
+        // Tmap.LonLat("126.997589", "37.570594").transform("EPSG:4326", "EPSG:3857"), icon); markerEndLayer.addMarker(marker_e);
+        //
+        //  3. 경유지 심볼 찍기 var markerWaypointLayer = new Tmap.Layer.Markers("waypoint"); map.addLayer(markerWaypointLayer);
+        //
+        // var size = new Tmap.Size(24, 38); var offset = new Tmap.Pixel(-(size.w / 2), -size.h); var icon = new Tmap.IconHtml("<img src='http://tmapapis.sktelecom.com/upload/tmap/marker/pin_b_m_p.png' />", size, offset); var marker = new Tmap.Marker(new
+        // Tmap.LonLat("126.983072", "37.573028").transform("EPSG:4326", "EPSG:3857"), icon); markerWaypointLayer.addMarker(marker);
+        //
+        // var size = new Tmap.Size(24, 38); var offset = new Tmap.Pixel(-(size.w / 2), -size.h); var icon = new Tmap.IconHtml("<img src='http://tmapapis.sktelecom.com/upload/tmap/marker/pin_b_m_p.png' />", size, offset); var marker = new Tmap.Marker(new
+        // Tmap.LonLat("126.987319", "37.565778").transform("EPSG:4326", "EPSG:3857"), icon); markerWaypointLayer.addMarker(marker);
+        //
+        // 4. 경로 탐색 API 사용요청 (경로 탐색 api를 따로 요청) var startX = 126.977022; var startY = 37.569758; var endX = 126.997589; var endY = 37.570594; var passList = "126.983072,37.573028_126.987319,37.565778"; var prtcl; var headers = {}; headers["appKey"] =
+        // "6a71ac68-585d-4a6e-8f1d-3a6182dee409"; $.ajax({   method: "POST",   headers: headers,   url: "https://api2.sktelecom.com/tmap/routes?version=1&format=xml",   async: false,   data: {     startX: startX,     startY: startY,     endX: endX, endY:
+        // endY,     passList: passList,     reqCoordType: "WGS84GEO",     resCoordType: "EPSG3857",     angle: "172",   },   success: function(response) {     prtcl = response;
+        //
+        // 5. 경로 탐색  결과 Line 그리기     경로 탐색  결과 POINT 찍기     /* -------------- Geometry.Point -------------- */     var pointLayer = new Tmap.Layer.Vector("point");  신규 벡터 레이어를 생성하는 클래스     var prtclString = new XMLSerializer().serializeToString(prtcl);  xml
+        // to String     xmlDoc = $.parseXML(prtclString),       $xml = $(xmlDoc),       $intRate = $xml.find("Placemark");     var style_red = {       fillColor: "#ff0000",       fillOpacity: 0.2,       strokeColor: "#ff0000",       strokeWidth: 3,
+        // strokeDashstyle: "solid",       pointRadius: 2,       title: "this is a red line"     };     $intRate.each(function(index, element) {       var nodeType = element.getElementsByTagName("tmap:nodeType")[0].childNodes[0].nodeValue;       if (nodeType
+        // == "POINT") {         var point = element.getElementsByTagName("coordinates")[0].childNodes[0].nodeValue.split(',');         var geoPoint = new Tmap.Geometry.Point(point[0], point[1]);         var pointFeature = new Tmap.Feature.Vector(geoPoint,
+        // null, style_red);         pointLayer.addFeatures([pointFeature]);       }     });     map.addLayer(pointLayer);     /* -------------- Geometry.Point -------------- */     경로 탐색  결과 Line 그리기     routeLayer.style = {       fillColor: "#0000ff",
+        // fillOpacity: 0.2,       strokeColor: "#0000ff",       strokeWidth: 3,       strokeDashstyle: "solid",       pointRadius: 2,       title: "this is a blue line"     }     var kmlForm = new Tmap.Format.KML().read(prtcl);
+        // routeLayer.addFeatures(kmlForm);
+        //
+        //
+        //      6. 경로탐색 결과 반경만큼 지도 레벨 조정     map.zoomToExtent(routeLayer.getDataExtent());   },
+        //
+        //   error: function(request, status, error) {     console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);   } });
+      } // initTmap 함수의 끝
 
-<body>
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+      // function addMapSize() {   var mapResize = document.getElementById('map_div'); map의 div   mapResize.style.width = '70%'; map의 width 변경   mapResize.style.height = '600px'; map의 height 변경 }
+      //
+      // function decreaseMapSize() {   var mapResize = document.getElementById('map_div'); map의 div   mapResize.style.width = '70%'; map의 width 변경   mapResize.style.height = '300px'; map의 height 변경 }
+
+      function onCompleteTData(e) {
+        if (jQuery(this.responseXML).find("searchPoiInfo pois poi").text() != '') {
+          jQuery(this.responseXML).find("searchPoiInfo pois poi").each(function () {
+            var name = jQuery(this).find("name").text();
+            var lon = jQuery(this).find("frontLon").text();
+            var lat = jQuery(this).find("frontLat").text();
+            var options = {
+              label: new Tmap.Label(name),
+              lonlat: new Tmap.LonLat(lon, lat)
+            };
+            addMarker(options);
+          });
+        } else {
+          alert('검색결과가 없습니다.');
+        }
+        map.zoomToExtent(markerLayer.getDataExtent());
+      }
+
+      function addMarkerLayer() {
+        markerLayer = new Tmap.Layer.Markers("marker");
+        map.addLayer(markerLayer);
+      };
+
+      function searchPOI() {
+        tdata = new Tmap.TData();
+        tdata.events.register("onComplete", tdata, onCompleteTData);
+        var center = map.getCenter();
+        tdata.getPOIDataFromSearch(encodeURIComponent("노래방"), {
+          centerLon: center.lon,
+          centerLat: center.lat
+        });
+      }
+
+      function addMarker(options) {
+        var size = new Tmap.Size(12, 19);
+        var offset = new Tmap.Pixel(-(size.w / 2), -size.h);
+        var icon = new Tmap.Icon("https://developers.skplanetx.com/upload/tmap/marker/pin_b_s_simple.png", size, offset);
+        var marker = new Tmap.Markers(options.lonlat, icon, options.label);
+        markerLayer.addMarker(marker);
+        marker.events.register("mouseover", marker, onOverMouse);
+        marker.events.register("mouseout", marker, onOutMouse);
+      }
+
+      // 목적지 text를 지우는 함수
+      function eraseDestination() {
+        $('#desLocation').val(" ");
+      }
+    </script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-        <a class="navbar-brand" href="#">Brand</a>
-      </div>
+          <a class="navbar-brand" href="/map/index">Nikonokono
+          <span class="glyphicon glyphicon-music" aria-hidden="true"></span></a></a>
+        </div>
 
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
-            </ul>
-          </li>
-        </ul>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown
+                <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="#">Action</a>
+                </li>
+                <li>
+                  <a href="#">Another action</a>
+                </li>
+                <li>
+                  <a href="#">Something else here</a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                  <a href="#">Separated link</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
       </div>
-      <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
-  </nav>
-  <!-- navbar의 끝 -->
+      <!-- /.container-fluid -->
+    </nav>
+    <!-- navbar의 끝 -->
 
-  <div class="container-fluid">
-      <div class="col-xs-7 col-sm-7 col-md-7" id="map_div">
-      </div>
+    <div class="container-fluid">
+      <div class="col-xs-7 col-sm-7 col-md-7" id="map_div"></div>
 
       <div class="container col-xs-3 col-sm-3 col-md-3" id="aside" style="margin-left:15px;">
-          <div class="row" style="margin-bottom:10px;">
-            <label for="desLocation"> 목적지 </label>
-            <input type="text" id="desLocation" name="desLocation" placeholder="목적지">
-          </div>
+        <div class="row" style="margin-bottom:10px;">
+          <label for="desLocation">
+            목적지
+          </label>
+          <input type="text" id="desLocation" name="desLocation" placeholder="목적지">
+        </div>
 
-          <div class="row" style="margin-bottom:10px;">
-              <button class="btn btn-success"> 길 찾기 </button>
-              <button class="btn btn-success"> 경유지추가 </button>
-              <button id="eraser" class="btn btn-success" onclick="eraseDestination()"> 지우기 </button>
-          </div>
+        <div class="row" style="margin-bottom:10px;">
+          <button class="btn btn-success">
+            길 찾기
+          </button>
+          <button class="btn btn-success">
+            경유지추가
+          </button>
+          <button id="eraser" class="btn btn-success" onclick="eraseDestination()">
+            지우기
+          </button>
+        </div>
 
-          <div class="row">
-            <div id="info_aside" class="col-xs-12 col-sm-12 col-md-12 well" style="width:100%;height:588px">
-
-            </div>
-          </div>
+        <div class="row">
+          <div id="info_aside" class="col-xs-12 col-sm-12 col-md-12 well" style="width:100%;height:588px"></div>
+        </div>
       </div>
-  </div>
+    </div>
 
-  <!-- <button onclick="addMapSize()"> 지도 크게 </button>
-  <button onclick="decreaseMapSize()"> 지도 작게 </button> -->
-</body>
+    <!-- <button onclick="addMapSize()"> 지도 크게 </button> <button onclick="decreaseMapSize()"> 지도 작게 </button> -->
+  </body>
 </html>

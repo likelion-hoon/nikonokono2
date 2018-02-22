@@ -18,4 +18,8 @@ class ShowmeController < ApplicationController
   def board_write_form
 
   end
+
+  def board_show
+    @post = Post.find(params[:id])
+  end
 end
