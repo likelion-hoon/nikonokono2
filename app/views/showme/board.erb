@@ -1,5 +1,5 @@
 <!-- 2018/01/28 웹 애플리케이션을 만드는 순서 1. 구상→기획(계획)→디자인→개발→테스트 2. 'START SMALL', 최소한의 기능으로 시작하여 중요한 기능을 추가시키자. 3. 중요한 기능을 추가시키는 것은 복잡도를 고려해야 한다. 즉 추가시킬 때에는 신중의 신중을 기하자. -->
-
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
@@ -56,12 +56,29 @@
   <!-- navbar의 끝 -->
 
   <div class="container">
-    <a href="/showme/board_write_form" class="btn btn-success pull-right">
-      글 쓰기
-    </a>
-    <table class="table table-striped">
-      <br><br><br><br><br><br>
 
+    <div class="row">
+    <!-- 테이블 제목 설정 -->
+      <div class="col-xs-2 col-sm-2 col-md-2">
+        <label for="showmethecoin"> Show me the Coin </label>
+      </div>
+
+      <!-- 테이블 내용 검색 부분(select,input tag) -->
+      <div class="col-xs-offset-6 col-sm-offset-6 col-md-offset-6 col-xs-4 col-sm-4 col-md-4">
+        <div class="row">
+          <select name="search">
+            <option value="title">글 제목</option>
+            <option value="singer">가수 이름</option>
+            <option value="song">노래 제목</option>
+            <option value="email">작성자</option>
+          </select>
+          <input type="text" class="form-control col-xs-2" placeholder="Search">
+          <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-search"></span></a>
+        </div>
+      </div>
+    </div>
+
+    <table class="table table-striped" style="margin-top:80px;">
       <tr>
         <th> 글 번호 </th>
         <th> 글 제목 </th>
@@ -80,12 +97,15 @@
           <td><%= post.singer %></td>
           <td><%= post.song %></td>
           <td> monki0120 </td>
-          <td> 1 </td>
-          <td> 0 </td>
+          <td><%= post.hit %></td>
+          <td><%= post.recom %></td>
           <td><%= time_ago_in_words(post.created_at) %> 전 </td>
         </tr>
       <% end %>
     </table>
+
+     <%# paginate @posts %>
+    <a href="/showme/board_write_form" class="btn btn-success pull-right"><span class="glyphicon glyphicon-pencil"></span></a>
 
   </div>
 </body>

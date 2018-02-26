@@ -1,4 +1,5 @@
 class ShowmeController < ApplicationController
+
   def board
     @posts = Post.all.order('id desc')
   end

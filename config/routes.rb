@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get 'map/index'
 
-  get 'showme/board'
+  get 'showme/board' => 'showme#board'
   get 'showme/board_write'
   get 'showme/board_write_form'
 

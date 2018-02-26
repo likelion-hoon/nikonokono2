@@ -5,6 +5,12 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'nokogiri', '~> 1.8.2'
+
+
+# 게시판 페이징 기능 라이브러리
+gem 'kaminari', '~> 0.16.1'
+
 gem 'soundcloud'
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
