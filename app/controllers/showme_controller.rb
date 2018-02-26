@@ -1,4 +1,6 @@
 class ShowmeController < ApplicationController
+  before_action :authenticate_user!
+
   def board
     @posts = Post.all.order('id desc')
   end
