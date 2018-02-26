@@ -1,16 +1,31 @@
-<h2>Forgot your password?</h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+<div class="container" style="margin-top:70px;">
+  <div class="row">
+    <div class="col-xs-offset-3 col-xs-6">
+      <h2 style="margin-bottom:30px;"> 비밀번호 찾기 페이지 </h2>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <%= devise_error_messages! %>
+
+        <div class="input-group" style="margin-top:10px;">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control input-lg', placeholder: '이메일을 입력하세요' %>
+        </div>
+
+        <div class="button-group" style="margin-top:20px;">
+            <div class="btn-group btn-group-lg">
+                <%= f.submit "전송", class: "btn btn-primary btn-lg" %>
+
+                <%- if controller_name != 'sessions' %>
+                  <%= link_to "로그인", new_session_path(resource_name), class: 'btn btn-primary btn-lg' %>
+                <% end -%>
+                <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+                  <%= link_to "회원가입", new_registration_path(resource_name), class: 'btn btn-primary btn-lg' %>
+                <% end -%>
+              </div>
+            </div>
+        </div>
+      <% end %>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
