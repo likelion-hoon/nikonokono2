@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'nokogiri', '~> 1.8.2'
+gem 'devise-bootstrap-views'
 
 
 # 게시판 페이징 기능 라이브러리
