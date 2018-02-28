@@ -51,9 +51,11 @@
           </div>
         </div>
 
+        <input type="hidden" id="userInfo" name="userInfo" value="<%= current_user.email.to_s %>">
+
         <div class="row" style="margin-top:10px;">
           <div class="form-group">
-            <label for="exampleInputFile"> 파일업로드</label>
+            <label for="exampleInputFile"> 파일업로드 </label>
             <input type="file" id="exampleInputFile">
           </div>
         </div>

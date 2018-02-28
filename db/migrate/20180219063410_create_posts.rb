@@ -9,8 +9,7 @@ class CreatePosts < ActiveRecord::Migration[5.1]
       t.integer :hit, default: 0     # 조회 수
       t.integer :recom, default: 0   # 추천 수
 
-      # t.references :user, index: true, foreign_key: true # user 외래키 자리
-
+      t.references :user, index: true, foreign_key: true # user 외래키 자리
       t.timestamps
     end
   end

@@ -3,6 +3,7 @@ class ShowmeController < ApplicationController
 
   def board
     @posts = Post.all.order('id desc')
+    @posts = Kaminari.paginate_array(@posts).page(params[:page])
   end
 
   def board_write
@@ -11,7 +12,7 @@ class ShowmeController < ApplicationController
     @post.content = params[:content]
     @post.singer = params[:singer]
     @post.song = params[:song]
-
+    @post.user = current_user
     @post.save
 
     redirect_to "/showme/board"

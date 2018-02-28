@@ -50,7 +50,7 @@
           <td><a href="/showme/<%= post.id %>"><%= post.title %></a></td>
           <td><%= post.singer %></td>
           <td><%= post.song %></td>
-          <td> monki0120 </td>
+          <td><%= post.user.present? ? post.user.email : "null" %></td>
           <td><%= post.hit %></td>
           <td><%= post.recom %></td>
           <td><%= time_ago_in_words(post.created_at) %> 전 </td>
@@ -58,7 +58,8 @@
       <% end %>
     </table>
 
-     <%# paginate @posts %>
+    <%= paginate @posts, left: 1, right: 3 %>
+
     <a href="/showme/board_write_form" class="btn btn-success pull-right"><span class="glyphicon glyphicon-pencil"></span></a>
 
   </div>
