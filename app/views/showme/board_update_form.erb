@@ -14,19 +14,19 @@
     <div class="col-xs-2 col-sm-2 col-md-2"></div>
 
     <div class="col-xs-8 col-sm-8 col-md-8">
-      <h2> 음악 파일을 업로드 하세요! </h2>
-      <form action="/board_write" method="POST">
+      <h2> 글 수정 페이지 </h2>
+      <form action="/showme/board_update/<%= @post.id %>" method="POST">
         <div class="row">
           <div class="form-group">
             <label for="inputTitle">글 제목</label>
-            <input type="text" class="form-control" id="inputTitle" name="title" placeholder="글 제목">
+            <input type="text" class="form-control" id="inputTitle" name="update_title" value='<%= @post.title %>'>
           </div>
         </div>
 
         <div class="row">
           <div class="form-group">
             <label for="inputContent">글 내용</label>
-            <textarea rows="10" cols="100" class="form-control" id="inputContent" name="content" placeholder="글 내용"></textarea>
+            <textarea rows="10" cols="100" class="form-control" id="inputContent" name="update_content"><%= @post.content %></textarea>
           </div>
         </div>
 
@@ -34,24 +34,15 @@
           <div class="col-xs-6 col-sm-6 col-md-6">
             <div class="form-group">
               <label for="inputSinger">가수 이름</label>
-              <input type="text" class="form-control" id="inputSinger" name="singer" placeholder="가수 이름">
+              <input type="text" class="form-control" id="inputSinger" name="update_singer" value='<%= @post.singer %>'>
             </div>
           </div>
 
           <div class="col-xs-6 col-sm-6 col-md-6">
             <div class="form-group">
               <label for="inputSong">노래 제목</label>
-              <input type="text" class="form-control" id="inputSong" name="song" placeholder="노래 제목">
+              <input type="text" class="form-control" id="inputSong" name="update_song" value='<%= @post.song %>'>
             </div>
-          </div>
-        </div>
-
-        <input type="hidden" id="userInfo" name="userInfo" value="<%= current_user.email.to_s %>">
-
-        <div class="row" style="margin-top:10px;">
-          <div class="form-group">
-            <label for="exampleInputFile"> 파일업로드 </label>
-            <input type="file" id="exampleInputFile">
           </div>
         </div>
 
