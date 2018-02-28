@@ -58,9 +58,11 @@
       <% end %>
     </table>
 
-    <%= paginate @posts, left: 1, right: 3 %>
-
-    <a href="/showme/board_write_form" class="btn btn-success pull-right"><span class="glyphicon glyphicon-pencil"></span></a>
+    <div class="row">
+      <%= page_entries_info @posts %>
+      <%= paginate @posts, left: 1, right: 3 %><br />
+      <a href="/showme/board_write_form" class="btn btn-success pull-right"><span class="glyphicon glyphicon-pencil"></span></a>
+    </div>
 
   </div>
 </body>
