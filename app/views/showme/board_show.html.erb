@@ -41,6 +41,11 @@
       </tr>
 
       <tr>
+        <td ><label> 작성 시간 </label> </td>
+        <td colspan="3"><%= showDatetime(@post.created_at.to_s) %></td>
+      </tr>
+
+      <tr>
         <td><label> 가수 이름 </label></td>
         <td><%= @post.singer %></td>
         <td><label> 노래 제목 </label></td>

@@ -51,5 +51,17 @@ class ShowmeController < ApplicationController
     redirect_to "/showme/board"
   end
 
+  def showDatetime(time)
+    year = time.first(4)
+    month = time[5..6]
+    date = time[8..9]
+    hour = time[11..12]
+    minute = time[14..15]
 
+    s = year+'년 '+month+'월 '+date+'일 '+hour+'시 '
+    return s
+  end
+
+  # 사용할 메서드 정의
+  helper_method :showDatetime
 end
