@@ -69,17 +69,59 @@
       <tr>
     </table>
 
+    <div class="thumb-up" style="text-align:center;">
+      <a href="#"><span class="glyphicon glyphicon-thumbs-up"></span></a>
+    </div>
+
     <div class="update" style="text-align:right">
-      <a href="/showme/board_update_form/<%= @post.id %>" class="btn btn-info"> 수정 </a>
-      <a href="/showme/board_delete/<%= @post.id %>" class="btn btn-info"> 삭제 </a>
-      <a href="/showme/board" class="btn btn-info"> 목록 </a>
+      <% if user_signed_in? && current_user.email == @post.user.email %>
+        <a href="/showme/board_update_form/<%= @post.id %>" class="btn btn-info"> 수정 </a>
+        <a href="/showme/board_delete/<%= @post.id %>" class="btn btn-info"> 삭제 </a>
+        <a href="/showme/board" class="btn btn-info"> 목록 </a>
+      <% else %>
+        <a href="/showme/board" class="btn btn-info"> 목록 </a>
+      <% end %>
     </div>
 
     <hr />
+
     <!-- 댓글을 구현하는 부분 -->
     <div class="well">
-
+      <form action="/showme/reply_write" method="POST">
+         <div style="margin-bottom:10px;">
+           <% if user_signed_in? %>
+            <label><%= current_user.email %></label>
+           <% else %>
+            <p> 로그인 해주세요 </p>
+           <% end %>
+         </div>
+         <div style="margin-bottom:10px;">
+           <textarea name="reply_content" class="form-control"
+           placeholder="명예를 훼손하는 게시물은 이용약관 및 관련 법률에 의해 제재를 받을 수 있습니다."></textarea>
+         </div>
+         <div style="margin-bottom:10px;">
+           <button type="submit" class="btn btn-success"> 작성 </button>
+         </div>
+      </form>
     </div>
+
+
+    <!-- 댓글이 나타나는 부분 -->
+    <% @post.replies.each do |r| %>
+        <tr>
+          <p> 작성자 : <%= current_user.email %> </p>
+          <p> 내용  : <%= r.content %></p>
+          <p>작성시간 : <%= showDatetime(r.created_at.to_s) %> </p>
+
+          <td>
+            <% if user_signed_in? %>
+             <%= link_to '[수정]', reply_edit_path(r.id) if r.email == current_user.email %>
+             <%= link_to '[삭제]', reply_destroy_path(r.id),  method: :delete, data: { confirm: '글을 지우시겠습니까?' } if r.email == current_user.email %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+
   </div>
 </body>
 </html>

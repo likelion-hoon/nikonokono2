@@ -51,12 +51,21 @@ class ShowmeController < ApplicationController
     redirect_to "/showme/board"
   end
 
+  def reply_write
+    @reply = Reply.new
+    @reply.content = params[:reply_content]
+    @reply.post_id = params[:id_of_post]
+    @reply.save
+
+    redirect_to :back 
+  end
+
+  # 시간을 한글 형식으로 리턴해주는 함수
   def showDatetime(time)
     year = time.first(4)
     month = time[5..6]
     date = time[8..9]
     hour = time[11..12]
-    minute = time[14..15]
 
     s = year+'년 '+month+'월 '+date+'일 '+hour+'시 '
     return s
