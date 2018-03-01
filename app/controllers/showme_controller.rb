@@ -57,11 +57,11 @@ class ShowmeController < ApplicationController
     @reply.post_id = params[:id_of_post]
     @reply.save
 
-    redirect_to :back 
+    redirect_to action: "board_show", id: @reply.post_id
   end
 
-  # 시간을 한글 형식으로 리턴해주는 함수
-  def showDatetime(time)
+  # 시간을 한글 형식으로 리턴해주는 함수(board.erb에서 사용)
+  def showDateInBoard(time)
     year = time.first(4)
     month = time[5..6]
     date = time[8..9]
@@ -71,6 +71,19 @@ class ShowmeController < ApplicationController
     return s
   end
 
+  # 시간을 한글 형식으로 리턴해주는 함수(board_show에서 사용)
+  def showDateTheOther(time)
+    year = time.first(4)
+    month = time[5..6]
+    date = time[8..9]
+    hour = time[11..12]
+    minute = time[14..15]
+    second = time[17..18]
+
+    s = year+'년 '+month+'월 '+date+'일 '+hour+'시 '+minute+'분 '+second+'초'
+    return s
+  end
+
   # 사용할 메서드 정의
-  helper_method :showDatetime
+  helper_method :showDateInBoard, :showDateTheOther
 end

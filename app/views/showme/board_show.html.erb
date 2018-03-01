@@ -42,7 +42,7 @@
 
       <tr>
         <td ><label> 작성 시간 </label> </td>
-        <td colspan="3"><%= showDatetime(@post.created_at.to_s) %></td>
+        <td colspan="3"><%= showDateTheOther(@post.created_at.to_s) %></td>
       </tr>
 
       <tr>
@@ -69,6 +69,7 @@
       <tr>
     </table>
 
+    <!-- 추천 누르는 부분 tooltip으로 꾸미기 -->
     <div class="thumb-up" style="text-align:center;">
       <a href="#"><span class="glyphicon glyphicon-thumbs-up"></span></a>
     </div>
@@ -90,13 +91,15 @@
       <form action="/showme/reply_write" method="POST">
          <div style="margin-bottom:10px;">
            <% if user_signed_in? %>
-            <label><%= current_user.email %></label>
+            <label> E-mail : <%= current_user.email %> </label>
            <% else %>
-            <p> 로그인 해주세요 </p>
+            <p> 로그인해야 댓글 서비스를 이용할 수 있습니다. </p>
            <% end %>
          </div>
+          <input type="hidden" name="id_of_post" value="<%= @post.id %>">
          <div style="margin-bottom:10px;">
            <textarea name="reply_content" class="form-control"
+           style="height:80px"
            placeholder="명예를 훼손하는 게시물은 이용약관 및 관련 법률에 의해 제재를 받을 수 있습니다."></textarea>
          </div>
          <div style="margin-bottom:10px;">
@@ -108,20 +111,12 @@
 
     <!-- 댓글이 나타나는 부분 -->
     <% @post.replies.each do |r| %>
-        <tr>
+        <div class="well">
           <p> 작성자 : <%= current_user.email %> </p>
           <p> 내용  : <%= r.content %></p>
-          <p>작성시간 : <%= showDatetime(r.created_at.to_s) %> </p>
-
-          <td>
-            <% if user_signed_in? %>
-             <%= link_to '[수정]', reply_edit_path(r.id) if r.email == current_user.email %>
-             <%= link_to '[삭제]', reply_destroy_path(r.id),  method: :delete, data: { confirm: '글을 지우시겠습니까?' } if r.email == current_user.email %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-
-  </div>
+          <p> 작성시간 : <%= showDateTheOther(r.created_at.to_s) %> </p>
+        </div>
+    <% end %>
+  </div> <!-- container 마감 -->
 </body>
 </html>

@@ -22,4 +22,6 @@ Rails.application.routes.draw do
 
   # board_update_form에서 board_update로 로직처리를 넘긴다.
   post 'showme/board_update/:id' => 'showme#board_update'
+
+  post 'showme/reply_write' => 'showme#reply_write'
 end

@@ -34,10 +34,10 @@
 
     <table class="table table-striped" style="margin-top:80px;">
       <tr>
-        <th> 글 번호 </th>
-        <th> 글 제목 </th>
-        <th> 가수 이름 </th>
-        <th> 노래 제목 </th>
+        <th> 번호 </th>
+        <th> 제목 </th>
+        <th> 가수 </th>
+        <th> 노래 </th>
         <th> 작성자 </th>
         <th> 조회수 </th>
         <th> 추천수 </th>
@@ -53,7 +53,7 @@
           <td><%= post.user.present? ? post.user.email : "null" %></td>
           <td><%= post.hit %></td>
           <td><%= post.recom %></td>
-          <td><%= showDatetime(post.created_at.to_s) %></td>
+          <td><%= showDateInBoard(post.created_at.to_s) %></td>
         </tr>
       <% end %>
     </table>
