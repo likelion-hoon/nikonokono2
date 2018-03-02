@@ -8,6 +8,8 @@ end
 gem 'nokogiri', '~> 1.8.2'
 gem 'devise-bootstrap-views'
 
+# respond_to를 사용하기 위한 함수 
+gem 'responders'
 
 # 게시판 페이징 기능 라이브러리
 gem 'kaminari', :git => 'https://github.com/kaminari/kaminari'

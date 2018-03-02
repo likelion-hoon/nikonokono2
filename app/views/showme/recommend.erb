@@ -1,0 +1,30 @@
+<script type="text/javascript">
+  $(document).ready('shown.bs.modal',function(){
+     $('#myModal').modal('show');
+  });
+</script>
+
+<body>
+
+  <!-- 자기자신모달(self_modal) 정의 부분 -->
+  <div id="self_modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal 내용-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"> 자기 자신은 추천할 수 없습니다.</h4>
+        </div>
+        <div class="modal-body">
+          <h5> 정말로 삭제하시겠습니까? </h5>
+        </div>
+        <div class="modal-footer">
+          <a href="/showme/board_delete/<%= @post.id %>" class="btn btn-danger">삭제</a>
+          <a type="button" class="btn btn-default" data-dismiss="modal">취소</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>

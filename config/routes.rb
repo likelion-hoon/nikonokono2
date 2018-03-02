@@ -24,4 +24,10 @@ Rails.application.routes.draw do
   post 'showme/board_update/:id' => 'showme#board_update'
 
   post 'showme/reply_write' => 'showme#reply_write'
+
+  # recommend routes 설정
+  get 'showme/recommend/:id' => 'showme#recommend'
+
+  # 댓글 삭제 action
+  get 'showme/reply_delete/:reply_id' => 'showme#reply_delete'
 end

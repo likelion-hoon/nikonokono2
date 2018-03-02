@@ -1,6 +1,7 @@
 class ShowmeController < ApplicationController
   before_action :authenticate_user!
 
+
   def board
     @posts = Post.all.order('id desc')
     @posts = Kaminari.paginate_array(@posts).page(params[:page])
@@ -51,14 +52,39 @@ class ShowmeController < ApplicationController
     redirect_to "/showme/board"
   end
 
+  # 추천수 구현 action
+  def recommend
+    @post = Post.find(params[:id])
+
+    # 자신이 글인지 판단
+    if current_user.email == @post.user.email
+      respond_with do |format|
+        format.js { render :js => "my_function();" }
+      end
+    else
+      @post.recom = @post.recom + 1;
+      @post.save
+      redirect_to action: "board_show", id: @post.id
+    end
+  end
+
+  # 댓글관련 action
   def reply_write
     @reply = Reply.new
+    @reply.email = params[:reply_email]
     @reply.content = params[:reply_content]
-    @reply.post_id = params[:id_of_post]
     @reply.save
 
     redirect_to action: "board_show", id: @reply.post_id
   end
+
+  def reply_delete
+    @reply = Reply.find(params[:reply_id])
+    @reply.destroy
+
+    redirect_to action: "board_show", id: @reply.post_id
+  end
+
 
   # 시간을 한글 형식으로 리턴해주는 함수(board.erb에서 사용)
   def showDateInBoard(time)
