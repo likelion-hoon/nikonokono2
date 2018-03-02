@@ -10,7 +10,7 @@ gem 'devise-bootstrap-views'
 
 
 # 게시판 페이징 기능 라이브러리
-gem 'kaminari', '~> 0.16.1'
+gem 'kaminari', :git => 'https://github.com/kaminari/kaminari'
 
 # 회원가입, 로그인 지원 라이브러리
 gem 'devise'
