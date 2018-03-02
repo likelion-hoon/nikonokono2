@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   # board_write_form에서 board_write로 로직처리를 넘긴다.
   post '/board_write' => "showme#board_write"
 
-  get 'showme/:id' => "showme#board_show"
+  get 'showme/board_show/:id' => "showme#board_show"
 
   get 'showme/board_update_form/:id' => "showme#board_update_form"
 

@@ -53,7 +53,7 @@
       <% @posts.each do |post| %>
         <tr>
           <td><%= post.id %></td>
-          <td><a href="/showme/<%= post.id %>"><%= post.title %></a></td>
+          <td><a href="/showme/board_show/<%= post.id %>"><%= post.title %></a></td>
           <td><%= post.singer %></td>
           <td><%= post.song %></td>
           <td><%= post.user.present? ? post.user.email : "null" %></td>

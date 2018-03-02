@@ -55,7 +55,6 @@ class ShowmeController < ApplicationController
   # 추천수 구현 action
   def recommend
     @post = Post.find(params[:id])
-
     # 자신이 글인지 판단
     if current_user.email == @post.user.email
       respond_with do |format|
@@ -73,9 +72,10 @@ class ShowmeController < ApplicationController
     @reply = Reply.new
     @reply.email = params[:reply_email]
     @reply.content = params[:reply_content]
+    @reply.post_id = params[:id_of_post]
     @reply.save
 
-    redirect_to action: "board_show", id: @reply.post_id
+    redirect_to action: "board_show", id: @reply.post.id
   end
 
   def reply_delete

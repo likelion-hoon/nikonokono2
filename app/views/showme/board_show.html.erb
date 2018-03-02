@@ -87,7 +87,7 @@
 
     <hr />
 
-    <!-- 댓글을 구현하는 부분 -->
+    <!-- 댓글을 쓰는 부분 -->
     <div class="well">
       <form action="/showme/reply_write" method="POST">
          <div style="margin-bottom:10px;">
@@ -97,6 +97,7 @@
             <p> 로그인시에 댓글 서비스를 이용할 수 있습니다. </p>
            <% end %>
          </div>
+          <input type="hidden" name="id_of_post" value="<%= @post.id %>">
           <input type="hidden" name="reply_email" value="<%= current_user.email %>">
          <div style="margin-bottom:10px;">
            <textarea name="reply_content" class="form-control"
@@ -113,7 +114,7 @@
     <!-- 댓글이 나타나는 부분 -->
     <% @post.replies.each do |r| %>
         <div class="well">
-          <p> 작성자 : <%= @post.user.email%></p>
+          <p> 작성자 : <%= r.email %></p>
           <p> 내용  : <%= r.content %></p>
           <p> 작성시간 : <%= showDateTheOther(r.created_at.to_s) %> </p>
           <% if user_signed_in? && current_user.email == r.email %>
