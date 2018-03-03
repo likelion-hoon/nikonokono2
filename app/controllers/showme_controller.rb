@@ -72,17 +72,20 @@ class ShowmeController < ApplicationController
     @reply = Reply.new
     @reply.email = params[:reply_email]
     @reply.content = params[:reply_content]
-    @reply.post_id = params[:id_of_post]
-    @reply.save
+    @reply.post_id = params[:id] # post_id값도 설정해 줘야 한다.
 
-    redirect_to action: "board_show", id: @reply.post.id
+    if @reply.save
+      redirect_to action: "board_show", id: params[:id]
+    else
+      render :text => @reply.errors.messages[:title].first
+    end
   end
 
   def reply_delete
     @reply = Reply.find(params[:reply_id])
     @reply.destroy
 
-    redirect_to action: "board_show", id: @reply.post_id
+    redirect_to action: "board_show", id: @reply.post.id
   end
 
 
