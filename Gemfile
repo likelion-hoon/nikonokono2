@@ -7,8 +7,9 @@ end
 
 gem 'nokogiri', '~> 1.8.2'
 gem 'devise-bootstrap-views'
+gem 'mysql2'
 
-# respond_to를 사용하기 위한 함수 
+# respond_to를 사용하기 위한 함수
 gem 'responders'
 
 # 게시판 페이징 기능 라이브러리
@@ -21,7 +22,7 @@ gem 'devise'
 gem 'rails', '~> 5.1.4'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# gem 'sqlite3'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.7'

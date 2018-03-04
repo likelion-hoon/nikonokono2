@@ -56,13 +56,15 @@ class ShowmeController < ApplicationController
   def recommend
     @post = Post.find(params[:id])
     # 자신이 글인지 판단
-    if current_user.email == @post.user.email
-      respond_with do |format|
-        format.js { render :js => "my_function();" }
+    if current_user.email != @post.user.email
+      if @post.user.bool_recom == false
+        @post.recom = @post.recom + 1
+        @post.user.bool_recom = true
+        @post.save
+        @post.user.save
+      else
+
       end
-    else
-      @post.recom = @post.recom + 1;
-      @post.save
       redirect_to action: "board_show", id: @post.id
     end
   end

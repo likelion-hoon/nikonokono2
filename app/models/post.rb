@@ -9,4 +9,3 @@
   validates :singer, presence: { message: "가수를 입력하지 않았습니다." }
   validates :song, presence: { message: "노래를 입력하지 않았습니다." }
 end
-9
