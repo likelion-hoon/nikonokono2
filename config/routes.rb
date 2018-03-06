@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   post 'showme/reply_write' => 'showme#reply_write'
 
   # recommend routes 설정
-  get 'showme/recommend/:id' => 'showme#recommend'
+  get 'showme/recommend/:id' => 'showme#recommend', as: 'showme_recommend'
 
   # 댓글 삭제 action
   get 'showme/reply_delete/:reply_id' => 'showme#reply_delete'

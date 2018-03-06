@@ -1,6 +1,7 @@
 class ShowmeController < ApplicationController
-  before_action :authenticate_user!
 
+  # showme 컨트롤러에 접속하려면 user를 인증받아야 한다.
+  before_action :authenticate_user!
 
   def board
     @posts = Post.all.order('id desc')
@@ -13,7 +14,7 @@ class ShowmeController < ApplicationController
     @post.content = params[:content]
     @post.singer = params[:singer]
     @post.song = params[:song]
-    @post.user = current_user
+    @post.user_id = current_user.id
     @post.save
 
     redirect_to "/showme/board"
@@ -55,18 +56,10 @@ class ShowmeController < ApplicationController
   # 추천수 구현 action
   def recommend
     @post = Post.find(params[:id])
-    # 자신이 글인지 판단
-    if current_user.email != @post.user.email
-      if @post.user.bool_recom == false
-        @post.recom = @post.recom + 1
-        @post.user.bool_recom = true
-        @post.save
-        @post.user.save
-      else
+    @post.recom = @post.recom + 1
+    @post.save
 
-      end
-      redirect_to action: "board_show", id: @post.id
-    end
+    redirect_to action: "board_show", id: @post.id
   end
 
   # 댓글관련 action

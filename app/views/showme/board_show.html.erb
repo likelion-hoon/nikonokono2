@@ -7,20 +7,19 @@
     }
   </style>
 
-  <!-- jQuery library 불러오기 -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
   <script type="text/javascript">
     $(document).ready(function() {
-      // 비동기적 통신을 위해 ajax 사용
+
+      // 추천 버튼에 tooltip 기능 추가
+      $('[data-toggle="tooltip"]').tooltip();
+
+      // ajax 사용
       $('.reply_submit').click(function(){
 
         post_id = this.value;
         content = $("#reply_content_"+post_id).val();
         email = $("#reply_email").val();
         time = $("#reply_time").val();
-
-        alert(time);
 
         $.ajax({
            type: "POST",
@@ -106,10 +105,13 @@
       <tr>
     </table>
 
-    <!-- 추천 누르는 부분 tooltip으로 꾸미기 -->
-    <div class="thumb-up" style="text-align:center;">
-      <h2><a href="/showme/recommend/<%= @post.id %>"><span class="glyphicon glyphicon-thumbs-up"></span></a></h2>
-    </div>
+    <!-- 추천 누르는 부분 tooltip(타인의 글을 추천할 수 있습니다.)으로 꾸미기 -->
+    <% if @post.user_id != current_user.id %>
+      <div class="thumb-up" style="text-align:center;" data-toggle="tooltip" data-placement="bottom" title="다른 사람의 노래를 추천할 수 있습니다.">
+        <h2><%= link_to "",'/showme/recommend/'+@post.id.to_s,
+        class: 'glyphicon glyphicon-thumbs-up',  data: {confirm: '해당 노래를 추천하시겠습니까?'} %></h2>
+      </div>
+    <% end %>
 
     <div class="update" style="text-align:right">
       <% if user_signed_in? && current_user.email == @post.user.email %>
@@ -134,12 +136,13 @@
            <% end %>
          </div>
 
-          <input type="hidden" id="reply_email" name="reply_email" value="<%= current_user.email %>">
+         <input type="hidden" id="reply_email" name="reply_email" value="<%= current_user.email %>">
          <div style="margin-bottom:10px;">
            <textarea name="reply_content" class="form-control"
            style="height:80px" id="reply_content_<%= @post.id %>"
            placeholder="명예를 훼손하는 게시물은 이용약관 및 관련 법률에 의해 제재를 받을 수 있습니다."></textarea>
          </div>
+         <input type="hidden" id="reply_time" name="reply_time" value="<%= Time.new.inspect[0..18] %>">
          <div style="margin-bottom:10px;">
            <button value="<%= @post.id %>" type="submit" class="btn btn-success reply_submit"> 작성 </button>
          </div>
@@ -147,9 +150,10 @@
     </div>
 
 
-    <!-- 댓글이 나타나는 부분 -->
+    <!-- ajax시 댓글이 나타나는 부분 -->
     <div id="reply_show_<%= @post.id %>">
-    <% @post.replies.each do |r| %>
+    </div> <!-- reply_show 마감 -->
+    <% @post.replies.reverse_each do |r| %>
         <div class="well">
           <p> 작성자 : <%= r.email %>
             <% if user_signed_in? && current_user.email == r.email %>
@@ -157,10 +161,10 @@
             <% end %>
           </p>
           <p> 내용  : <%= r.content %></p>
-          <p> 작성시간 : <%= showDateTheOther(r.created_at.to_s) %> </p>
+          <p> 작성시간 : <%= r.created_at.to_s[0..18] %> </p>
         </div>
     <% end %>
-    </div> <!-- reply_show 마감 -->
+
   </div> <!-- container 마감 -->
 
 
