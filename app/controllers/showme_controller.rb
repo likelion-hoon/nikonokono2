@@ -15,9 +15,14 @@ class ShowmeController < ApplicationController
     @post.singer = params[:singer]
     @post.song = params[:song]
     @post.user_id = current_user.id
-    @post.save
 
-    redirect_to "/showme/board"
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to "/showme/board" }
+      else
+        format.html { render :board_write_form }
+      end
+    end
   end
 
   def board_write_form

@@ -7,7 +7,8 @@ end
 
 gem 'nokogiri', '~> 1.8.2'
 
-
+# facebook 로그인 lib
+gem 'omniauth-facebook'
 
 # 외부 데이터베이스 사용을 위한 gem파일
 gem 'mysql2'

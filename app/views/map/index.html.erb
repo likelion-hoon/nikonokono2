@@ -2,7 +2,9 @@
 <html>
   <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-    <title> 음악의 모든 것! nikonokono </title>
+    <title>
+      음악의 모든 것! nikonokono
+    </title>
     <style>
       h1 {
         text-align: center;
@@ -11,34 +13,54 @@
   </head>
 
   <body>
-    <div class="container" style="margin-top:90px;">
-      <div class="row">
-        <div class="col-xs-4 col-sm-4 col-md-4"></div>
-        <h1 class="col-xs-4 col-sm-4 col-md-4">
-           Nikonokono  <i class="icon-large icon-microphone"></i>
-        </h1>
+    <div class="container" style="margin-top:60px;">
+      <div class="page-header">
+        <h2 style="text-align:center;margin-bottom:30px;"> 홈페이지 소개 </h2>
       </div>
 
-      <div class="row" style="margin-top:20px;">
-        <div class="col-xs-4 col-sm-4 col-md-4"></div>
-        <div class="col-xs-4 col-sm-4 col-md-4">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It
-          has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged
+      <div class="row" style="margin-top:30px;">
+        <div class="col-xs-offset-1 col-xs-5">
+          <div class="panel panel-success">
+            <div class="panel-heading">제작동기</div>
+            <div class="panel-body"> </div>
+            <div class="panel-footer"> created by 이종훈 </div>
+          </div>
         </div>
-      </div>
-
-      <div class="row" style="margin-top:20px;text-align:center;">
-        <div class="col-xs-4 col-sm-4 col-md-4"></div>
-        <div class="col-xs-4 col-sm-4 col-md-4">
-          <a class="btn btn-success btn-lg" href="/map/map">
-            노래방 위치 찾기
-          </a>
-
-          <a class="btn btn-success btn-lg" href="/showme/board">
-            Show me the Coin
-          </a>
+        <div class="col-xs-5">
+          <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"> 위치 찾기 기능 </a>
+                </h4>
+              </div>
+              <div id="collapse1" class="panel-collapse collapse in">
+                <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse2"> 파일 업로드 기능 </a>
+                </h4>
+              </div>
+              <div id="collapse2" class="panel-collapse collapse">
+                <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse3"> 최신 음악 검색 </a>
+                </h4>
+              </div>
+              <div id="collapse3" class="panel-collapse collapse">
+                <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      </div> <!-- row의 끝 -->
+    </div> <!-- container의 끝 -->
   </body>
 </html>
