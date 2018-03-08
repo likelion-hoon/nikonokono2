@@ -5,7 +5,13 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# config에 application.yml파일을 생성하여 git에 업데이트 되지 않도록 하는 gem 파일
+gem 'figaro'
+
 gem 'nokogiri', '~> 1.8.2'
+
+# naver 로그인 lib
+gem 'naver-sdk'
 
 # facebook 로그인 lib
 gem 'omniauth-facebook'

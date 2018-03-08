@@ -76,7 +76,7 @@ class ShowmeController < ApplicationController
 
     if @reply.save
       redirect_to action: "board_show", id: params[:id]
-    else
+    else # reply가 저장되지 않으면
       render :text => @reply.errors.messages[:title].first
     end
   end
@@ -88,6 +88,10 @@ class ShowmeController < ApplicationController
     redirect_to action: "board_show", id: @reply.post.id
   end
 
+  # naver callback action
+  def callbacak
+
+  end
 
   # 시간을 한글 형식으로 리턴해주는 함수(board.erb에서 사용)
   def showDateInBoard(time)

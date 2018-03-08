@@ -31,4 +31,7 @@ Rails.application.routes.draw do
 
   # 댓글 삭제 action
   get 'showme/reply_delete/:reply_id' => 'showme#reply_delete'
+
+  # naver action 설정
+  get 'showme/callback' => 'showme#callback'
 end
