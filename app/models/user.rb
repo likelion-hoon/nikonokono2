@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook, :google_oauth2, :naver]
 
    def self.new_with_session(params, session)
      super.tap do |user|
@@ -13,7 +13,7 @@ class User < ApplicationRecord
      end
    end
 
-   # facebook login 위한 코드 (auth를 받는다.)
+   # facebook_login, naver_login (auth를 받는다.)
    def self.from_omniauth(auth)
      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
        user.email = auth.info.email
@@ -23,7 +23,7 @@ class User < ApplicationRecord
      end
    end
 
-   # google login 위한 코드 (access_token을 받는다.)
+   # google_login (access_token을 받는다.)
    def self.from_omniauth(access_token)
       data = access_token.info
       user = User.where(email: data['email']).first

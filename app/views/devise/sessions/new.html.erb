@@ -47,7 +47,7 @@
           <!-- naver login -->
           <div class="naver_login" style="margin-top:10px;">
             <% unless current_user %>
-              <%= link_to "Naver 로그인 이용하기", user_google_oauth2_omniauth_authorize_path, class:'btn btn-lg btn-success btn-block' %>
+              <%= link_to "Naver 로그인 이용하기", user_naver_omniauth_authorize_path, class:'btn btn-lg btn-success btn-block' %>
             <% end %>
           </div>
 

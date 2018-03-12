@@ -10,6 +10,9 @@ gem 'figaro'
 
 gem 'nokogiri', '~> 1.8.2'
 
+# naver 로그인 lib
+gem 'omniauth-naver'
+
 # google 로그인 lib
 gem 'omniauth-google-oauth2'
 
