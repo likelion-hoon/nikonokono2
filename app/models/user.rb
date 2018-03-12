@@ -13,7 +13,7 @@ class User < ApplicationRecord
      end
    end
 
-   # facebook login 위한 코드
+   # facebook login 위한 코드 (auth를 받는다.)
    def self.from_omniauth(auth)
      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
        user.email = auth.info.email
@@ -23,7 +23,7 @@ class User < ApplicationRecord
      end
    end
 
-   # google login 위한 코드
+   # google login 위한 코드 (access_token을 받는다.)
    def self.from_omniauth(access_token)
       data = access_token.info
       user = User.where(email: data['email']).first

@@ -60,6 +60,14 @@
               <span class="glyphicon glyphicon-search"></span> 노래방 번호 검색
             </a></li>
 
+            <li>
+              <a href="#">
+                <% if user_signed_in? %>
+                  <%= current_user.email %>
+                <% end %>
+              </a>
+            </li>
+
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
