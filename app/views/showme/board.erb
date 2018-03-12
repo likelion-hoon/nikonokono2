@@ -57,7 +57,7 @@
           <td><%= post.singer %></td>
           <td><%= post.song %></td>
           <td><%= post.user.present? ? post.user.email : "null" %></td>
-          <td><%= post.hit %></td>
+          <td><%= 0 %></td>
           <td><%= post.recom %></td>
           <td><%= showDateInBoard(post.created_at.to_s) %></td>
         </tr>

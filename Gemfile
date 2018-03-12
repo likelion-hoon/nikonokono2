@@ -22,9 +22,6 @@ gem 'omniauth-facebook'
 # 외부 데이터베이스 사용을 위한 gem파일
 gem 'mysql2'
 
-# respond_to를 사용하기 위한 함수
-gem 'responders'
-
 # 게시판 페이징 기능 라이브러리
 gem 'kaminari', :git => 'https://github.com/kaminari/kaminari'
 
@@ -41,9 +38,10 @@ gem 'rails', '~> 5.1.4'
 gem 'puma', '~> 3.7'
 
 gem 'bootstrap-sass', '~> 3.3.7'
+gem 'sass-rails', '>= 3.2'
 gem 'jquery-rails'
 # Use SCSS for stylesheets
-gem 'sass-rails', '>= 3.2'
+
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

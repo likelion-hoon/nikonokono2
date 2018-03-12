@@ -257,7 +257,6 @@ DEPENDENCIES
   omniauth-naver
   puma (~> 3.7)
   rails (~> 5.1.4)
-  responders
   sass-rails (>= 3.2)
   selenium-webdriver
   spring

@@ -31,8 +31,6 @@ class ShowmeController < ApplicationController
 
   def board_show
     @post = Post.find(params[:id])
-    @post.hit = @post.hit + 1
-    @post.save
   end
 
   # 게시판 수정 처리 폼
@@ -60,11 +58,29 @@ class ShowmeController < ApplicationController
 
   # 추천수 구현 action
   def recommend
-    @post = Post.find(params[:id])
-    @post.recom = @post.recom + 1
-    @post.save
+    @recoms = Recommend.all
 
-    redirect_to action: "board_show", id: @post.id
+    bool = 0
+    # 추천한 글인지 검사
+    @recoms.each do |r|
+       if r.email.to_s == current_user.email.to_s && r.pid.to_i == params[:id].to_i
+         bool = 1
+       end
+    end
+
+    if bool == 0
+      @recom = Recommend.new
+      @recom.email = current_user.email
+      @recom.pid = params[:id]
+      @post = Post.find(params[:id])
+      @post.recom = @post.recom + 1
+      @post.save
+      @recom.save
+      redirect_to action: "board_show", id: params[:id]
+    else
+      redirect_to action: "board_show", id: params[:id]
+    end
+
   end
 
   # 댓글관련 action
