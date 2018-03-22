@@ -99,7 +99,7 @@ class ShowmeController < ApplicationController
     if @reply.save
       redirect_to action: "board_show", id: params[:id]
     else # reply가 저장되지 않으면
-      render :text => @reply.errors.messages[:title].first
+      render :plain => @reply.errors.messages[:title].first
     end
   end
 
