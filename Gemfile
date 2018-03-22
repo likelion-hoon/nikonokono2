@@ -5,9 +5,22 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-# config에 application.yml파일을 생성하여 git에 업데이트 되지 않도록 하는 gem 파일
+# 조회수 구현 lib
+gem 'impressionist'
+
+# tinymce 번역 lib
+gem 'tinymce-rails-langs'
+
+# 게시판 텍스트 편집기 lib
+gem 'tinymce-rails'
+
+# 브라우저에서 db관리 lib
+gem 'rails_db'
+
+# key, secret 보호 lib
 gem 'figaro'
 
+# 크롤링 기능 lib
 gem 'nokogiri', '~> 1.8.2'
 
 # naver 로그인 lib

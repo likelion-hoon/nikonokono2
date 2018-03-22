@@ -1,7 +1,3 @@
-// Place all the styles related to the map controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 h2 {
 
 }
@@ -14,15 +10,16 @@ body {
  color: #FF9E45;
 }
 
-.navbar-default a:hover,a:focus {
-color: white; /*BACKGROUND color for active*/
-background-color: #030033;
-}
-
 .navbar-default {
  background-color: #333;
- border: 1px solid black;
+ color: #dfdfdf;
+ border: 1px solid #333;
 }
+
+.navbar-default a:hover,a:focus {
+  color: white;
+}
+
 
 .footer {
   position: fixed;
@@ -31,5 +28,5 @@ background-color: #030033;
   width: 100%;
   text-align: center;
   background-color: #333;
-  color: #fff;
+  color: #dfdfdf;
 }

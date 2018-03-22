@@ -74,7 +74,7 @@
 
       <tr>
         <td ><label> 글 내용 </label> </td>
-        <td colspan="3"> <%= @post.content %></td>
+        <td colspan="3"> <%= @post.content.html_safe %></td>
       </tr>
 
       <tr>
@@ -93,7 +93,7 @@
         <td><span class="glyphicon glyphicon-thumbs-up"></span></td>
         <td> <%= @post.recom %> </td>
         <td><label> 조회수 </label></td>
-        <td><%= 1 %></td>
+        <td><%= "#{@post.unique_impression_count}" %></td>
       </tr>
       <tr>
 

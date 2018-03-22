@@ -26,7 +26,8 @@
         <div class="row">
           <div class="form-group">
             <label for="inputContent">글 내용</label>
-            <textarea rows="10" cols="100" class="form-control" id="inputContent" name="update_content"><%= @post.content %></textarea>
+            <%= tinymce :language => "ko" %>
+            <textarea rows="10" cols="100" class="form-control tinymce" id="inputContent" name="update_content"><%= @post.content %></textarea>
           </div>
         </div>
 

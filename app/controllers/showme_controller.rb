@@ -2,6 +2,12 @@ class ShowmeController < ApplicationController
 
   # showme 컨트롤러에 접속하려면 user를 인증받아야 한다.
   before_action :authenticate_user!
+  before_action :log_impression, :only=> [:board_show]
+
+  def log_impression
+   @hit_post = Post.find(params[:id])
+   @hit_post.impressions.create(ip_address: request.remote_ip,user_id:current_user.id)
+  end
 
   def board
     @posts = Post.all.order('id desc')
