@@ -1,0 +1,33 @@
+<%= form_with(model: @post, local: true) do |f| %>
+  <div class="field">
+    <%= f.label "글 제목" %>
+    <%= f.text_field :title, id: :title, name: :title, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label "글 내용" %>
+    <%= tinymce :language => "ko" %>
+    <%= f.text_area :content, id: :content, name: :content, class: "form-control tinymce", rows: "10", style: "min-height:200px" %>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6">
+      <div class="field">
+        <%= f.label "가수 이름" %>
+        <%= f.text_field :singer, id: :title, name: :singer, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="col-xs-6 col-sm-6 col-md-6">
+      <div class="field">
+        <%= f.label "노래 제목" %>
+        <%= f.text_field :song, id: :title, name: :song, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions" style="margin-top:15px;">
+    <%= link_to '뒤로가기', posts_path, class: "btn btn-warning", style: "color:white" %>
+    <%= f.submit "작성", class: "btn btn-success pull-right" %>
+  </div>
+<% end %>

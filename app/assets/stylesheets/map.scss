@@ -1,23 +1,11 @@
-<<<<<<< HEAD
 // Place all the styles related to the map controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-=======
-
-// Place all the styles related to the map controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
->>>>>>> front
 $backgroundColor: #fff;
 $navbar-backgroundColor: #333;
 $navbar-fontColor: #dfdfdf;
 $navbar-fontColorHover: #ffa500;
-<<<<<<< HEAD
-
-=======
->>>>>>> front
 $navbar-brandColor: #ffa500;
 $navbar-brandColorHover: #eea200;
 
@@ -25,7 +13,6 @@ body {
   background-color: $backgroundColor;
   margin:0;
   padding:0;
-<<<<<<< HEAD
 }
 
 /* navbar 가장 부모 스타일을 navbar-inverse로 정함 */
@@ -44,7 +31,6 @@ body {
 .navbar-inverse .navbar-brand:focus {
   color: $navbar-brandColorHover;
   background-color: transparent;
-=======
 }
 
 /* navbar 가장 부모 스타일을 navbar-inverse로 정함 */
@@ -64,7 +50,6 @@ body {
  background-color: #333;
  color: #dfdfdf;
  border: 1px solid #333;
->>>>>>> front
 }
 
 // nav-bar 오른쪽 끝 3줄 (icon-bar)
@@ -105,9 +90,6 @@ body {
   color: $navbar-fontColorHover;
 }
 
-<<<<<<< HEAD
-=======
-.navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
   color: $navbar-brandColorHover;
   background-color: transparent;
@@ -151,7 +133,6 @@ body {
   color: $navbar-fontColorHover;
 }
 
->>>>>>> front
 // 푸터 꾸미기
 .footer {
   position: fixed;

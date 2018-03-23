@@ -1,65 +1,52 @@
 class ShowmeController < ApplicationController
 
   # showme 컨트롤러에 접속하려면 user를 인증받아야 한다.
-  before_action :authenticate_user!
-  before_action :log_impression, :only=> [:board_show]
+  before_action :authenticate_user!, except: [:index]
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :log_impression, only: [:show]
 
   def log_impression
    @hit_post = Post.find(params[:id])
-   @hit_post.impressions.create(ip_address: request.remote_ip,user_id:current_user.id)
+   @hit_post.impressions.create(ip_address: request.remote_ip, user_id:current_user.id)
   end
 
-  def board
+  def index # 이전 : board
     @posts = Post.all.order('id desc')
     @posts = Kaminari.paginate_array(@posts).page(params[:page])
   end
 
-  def board_write
+  def new #이전 : board_write_form
     @post = Post.new
-    @post.title = params[:title]
-    @post.content = params[:content]
-    @post.singer = params[:singer]
-    @post.song = params[:song]
+  end
+
+  def create #이전 : board_write
+    @post = Post.new(post_params)
     @post.user_id = current_user.id
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to "/showme/board" }
+        format.html { redirect_to posts_path }
       else
-        format.html { render :board_write_form }
+        format.html { render :new }
       end
     end
   end
 
-  def board_write_form
-
-  end
-
-  def board_show
-    @post = Post.find(params[:id])
-  end
-
-  # 게시판 수정 처리 폼
-  def board_update
-    @post = Post.find(params[:id])
-    @post.title = params[:update_title]
-    @post.content = params[:update_content]
-    @post.singer = params[:update_singer]
-    @post.song = params[:update_song]
-    @post.save
-
-    redirect_to "/showme/board"
+  def show #이전 : board_show
   end
 
   # 게시판 수정 폼
-  def board_update_form
-    @post = Post.find(params[:id])
+  def edit #이전 : board_update_form
   end
 
-  def board_delete
-    @post = Post.find(params[:id])
+  def update #이전 : board_update
+    @post.update(post_params)
+    redirect_to posts_path
+  end
+
+  def destroy #이전 : board_delete
     @post.destroy
-    redirect_to "/showme/board"
+    redirect_to posts_path
   end
 
   # 추천수 구현 action
@@ -110,11 +97,6 @@ class ShowmeController < ApplicationController
     redirect_to action: "board_show", id: @reply.post.id
   end
 
-  # naver callback action
-  def callbacak
-
-  end
-
   # 시간을 한글 형식으로 리턴해주는 함수(board.erb에서 사용)
   def showDateInBoard(time)
     year = time.first(4)
@@ -141,4 +123,13 @@ class ShowmeController < ApplicationController
 
   # 사용할 메서드 정의
   helper_method :showDateInBoard, :showDateTheOther
+
+  private
+    def set_post
+      @post = Post.find(params[:id])
+    end
+
+    def post_params
+      params.permit(:title,:content,:singer,:song)
+    end
 end

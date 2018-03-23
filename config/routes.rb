@@ -1,40 +1,18 @@
 Rails.application.routes.draw do
 
+  #resources :bulletins do
+  resources :posts, controller: 'showme'
+  #end
+
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
-  # 중첩형태.. 수정예정
-  # resources :bulletins do
-  #   resources :posts
-  # end
-
+  # controller map routing
   root 'map#index'
-
   get 'map/index'
-
-  get 'showme/board' => "showme#board"
-  get 'showme/board_write'
-  get 'showme/board_write_form'
-
   get 'map/map' => "map#map"
 
-  # board_write_form에서 board_write로 로직처리를 넘긴다.
-  post '/board_write' => "showme#board_write"
-
-  get 'showme/board_show/:id' => "showme#board_show"
-
-  get 'showme/board_update_form/:id' => "showme#board_update_form"
-
-  get 'showme/board_delete/:id' => 'showme#board_delete'
-
-  # board_update_form에서 board_update로 로직처리를 넘긴다.
-  post 'showme/board_update/:id' => 'showme#board_update'
-
+  # controller showme routing
   post 'showme/reply_write' => 'showme#reply_write'
-
-  # recommend routes 설정
   get 'showme/recommend/:id' => 'showme#recommend', as: 'showme_recommend'
-
-  # 댓글 삭제 action
   get 'showme/reply_delete/:reply_id' => 'showme#reply_delete'
-
 end
