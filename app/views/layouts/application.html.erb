@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Nikonokono2</title>
+    <title>
+      음악의 모든 것! nikonokono
+    </title>
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
-    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 
     <style>
 
@@ -25,7 +25,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
+<<<<<<< HEAD
           <a class="navbar-brand" href="/map/index"> Nikonokono <span class="glyphicon glyphicon-music" aria-hidden="true"></span></a>
+=======
+          <a class="navbar-brand" href="/map/index"> Nikonokono <i class="fa fa-microphone"></i></a>
+>>>>>>> front
         </div>
 
         <!-- jQuery 없이는 dropdown-toggle이 작동하지 않는다.  -->
@@ -70,6 +74,9 @@
       </div>
       <!-- /.container-fluid -->
     </nav>
+
+    <!-- 알림 표시 -->
+    <p id="notice" class="alert alert-success"><%= notice %></p>
 
     <footer class="footer">
       <div class="container">

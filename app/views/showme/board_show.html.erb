@@ -52,7 +52,10 @@
 </head>
 <body>
 
+<<<<<<< HEAD
   <p id="notice"><%= notice %></p>
+=======
+>>>>>>> front
   <div class="container" style="margin-top:80px">
     <h1 style="text-align:center;margin-bottom:50px"> Show me the Coin </h1>
 
@@ -79,7 +82,7 @@
 
       <tr>
         <td ><label> 작성 시간 </label> </td>
-        <td colspan="3"><%= showDateTheOther(@post.created_at.to_s) %></td>
+        <td colspan="3"><%= "#{time_ago_in_words(@post.created_at)} 전" %></td>
       </tr>
 
       <tr>
@@ -128,7 +131,6 @@
 
     <!-- 댓글을 쓰는 부분 -->
     <div class="well">
-      <!-- <form action="/showme/reply_write" method="POST"> -->
          <div style="margin-bottom:10px;">
            <% if user_signed_in? %>
             <label> E-mail : <%= current_user.email %> </label>
@@ -147,7 +149,6 @@
          <div style="margin-bottom:10px;">
            <button value="<%= @post.id %>" type="submit" class="btn btn-success reply_submit"> 작성 </button>
          </div>
-      <!-- </form> -->
     </div>
 
 
@@ -162,7 +163,7 @@
             <% end %>
           </p>
           <p> 내용  : <%= r.content %></p>
-          <p> 작성시간 : <%= r.created_at.to_s[0..18] %> </p>
+          <p> 작성시간 : <%= "#{time_ago_in_words(r.created_at)} 전" %> </p>
         </div>
     <% end %>
 

@@ -1,18 +1,198 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-    <title>
-      음악의 모든 것! nikonokono
-    </title>
-    <style>
-      h1 {
-        text-align: center;
+    <style type="text/css">
+      #panel1 {
+        background-color : tomato;
+      }
+
+      #panel2 {
+        background-color : orange;
+      }
+
+      #panel3 {
+        background-color : yellow;
+      }
+
+      #panel4 {
+        background-color : lightgreen;
+      }
+
+      #panel5 {
+        background-color : lightblue;
+      }
+
+      #panel6 {
+        background-color : pink;
+      }
+
+      #panel7 {
+        background-color : red;
+      }
+
+      #panel8 {
+        background-color : orange;
+      }
+
+      #panel9 {
+        background-color : yellow;
+      }
+
+      #rank {
+        background-color : #dedede;
       }
     </style>
   </head>
-
   <body>
-  
+    <img width="100%" height="100px" src="/assets/main_banner.png" alt="picture">
+    <div class="container">
+      <div class="title" style="background-color:lightgray">
+          명예의 전당
+      </div>
+      <!-- 첫 번째 줄 -->
+      <div class="row" style="margin-top:50px;">
+
+        <div id="rank">
+          <div class="col-sm-4">
+            <p style="background-color:lightgray"> 1등 </p>
+            <div id="panel1" class="panel">
+              <div class="media" style="margin-top:10px">
+                <div class="media-left">
+                   <img src="img_avatar1.png" class="media-object" style="width:60px">
+                </div>
+                 <div class="media-body">
+                   <h4 class="media-heading">1등</h4>
+                   <p> 닉네임 : elifjs <br>
+                       가수 : 이수 <br>
+                       노래 : 행복하지 말아요<br>
+                       조회수 : 938 &nbsp;
+                       추천수 : 398 </p>
+                 </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <p style="background-color:lightgray"> 2등 </p>
+            <div id="panel2" class="panel">
+              <div class="media" style="margin-top:10px">
+                <div class="media-left">
+                   <img src="img_avatar1.png" class="media-object" style="width:60px">
+                </div>
+                 <div class="media-body">
+                   <h4 class="media-heading">2등</h4>
+                   <p> 닉네임 : vidhkdv <br>
+                       가수 : 나얼 <br>
+                       노래 : 바람기억 <br>
+                       조회수 : 938 &nbsp;
+                       추천수 : 398 </p>
+                 </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <p style="background-color:lightgray"> 3등 </p>
+            <div id="panel3" class="panel">
+              <div class="media" style="margin-top:10px">
+                <div class="media-left">
+                   <img src="img_avatar1.png" class="media-object" style="width:60px">
+                </div>
+                 <div class="media-body">
+                   <h4 class="media-heading">3등</h4>
+                   <p> 닉네임 : qpwrijk <br>
+                       가수 : 임창정 <br>
+                       노래 : 소주한잔 <br>
+                       조회수 : 938 &nbsp;
+                       추천수 : 398 </p>
+                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- container end -->
+
+    <div>
+
+    </div>
+
+    <hr>
+    <div class="container">
+      <!-- 두 번째 줄 -->
+      <div class="row">
+        <div class="col-sm-4">
+          <div id="panel4" class="panel">
+            <h1> 공지사항 <h1>
+            <h6> all_notices </h6>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div id="panel5" class="panel">
+            <h1> 업로드 게시판 </h1>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div id="panel6" class="panel">
+            <h1> 로그인 정보 </h1>
+          </div>
+        </div>
+      </div>
+
+      <!-- 세 번째 줄 -->
+      <div class="row">
+        <div class="col-sm-4">
+          <div id="panel7" class="panel">
+            <h1> 자유게시판 <h1>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div id="panel8" class="panel">
+            <h1> 투표하러가기 </h1>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div id="panel9" class="panel">
+            <h1> 활동왕 순위 </h1>
+          </div>
+        </div>
+      </div>
+    </div> <!-- container -->
+
+    <!-- 홈페이지 소개 -->
+    <div class="container">
+      <!-- 노래 업로드 기능 -->
+      <div class="col-sm-4">
+        <h3> 노래 업로드 </h3>
+        <p>
+          본인이 직접 녹음한 mp3파일을
+          업로드 게시판에 올리세요!
+          다른 사용자들이 올린 음악을 듣고 평가할 수 있습니다.
+       </p>
+      </div>
+
+      <!-- 노래방 찾기 기능 -->
+      <div class="col-sm-4">
+        <h3> 노래방 찾기 </h3>
+        <p>
+          우리나라에 있는 모든 노래방의 위치를 알려드립니다.
+          코인 노래방 / 일반 노래방을 분류하였고,
+          현재 위치에서 도보로 걸리는 시간을 알 수 있습니다.
+        </p>
+      </div>
+
+      <!-- 다양한 게시판 -->
+      <div class="col-sm-4">
+        <h3> 음악과 관련된 모든 게시판 </h3>
+        <p>
+           음악 업로드, 최신음악 게시판, 마이 플레이리스트 게시판
+           ,앨범 중고장터 게시판등 다양한 커뮤니티를 제공합니다.
+        </p>
+      </div>
+    </div>
   </body>
 </html>

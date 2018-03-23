@@ -5,6 +5,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# devise 한글화 lib
+gem 'devise-i18n'
+
 # 조회수 구현 lib
 gem 'impressionist'
 
@@ -50,11 +53,13 @@ gem 'rails', '~> 5.1.4'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 
+# Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'sass-rails', '>= 3.2'
 gem 'jquery-rails'
-# Use SCSS for stylesheets
 
+# fontawesome lib
+gem 'font-awesome-rails'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
