@@ -1,3 +1,12 @@
 // Place all the styles related to the showme controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// 게시판 글자수 초과로 레이아웃 무너지는거 방지
+.shortTitle {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width:280px;
+  height:20px;
+}
