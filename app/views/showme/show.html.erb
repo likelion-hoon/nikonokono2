@@ -52,60 +52,52 @@
 </head>
 <body>
 
+  <!-- 알림 기능 -->
   <p id="notice"><%= notice %></p>
 
   <div class="container" style="margin-top:80px">
-    <h1 style="text-align:center;margin-bottom:50px"> Show me the Coin </h1>
+      <div class="title">
+        <h2><%= @post.title %></h2>
+      </div>
 
-    <table class="table table-condensed borderless">
-      <tr>
-        <td ><label> 글 번호 </label></td>
-        <td colspan="2"> <%= @post.id %> </td>
-      </tr>
+      <div class="row" style="margin-top:20px">
 
-      <tr>
-        <td ><label> 글 제목 </label></td>
-        <td colspan="3"><%= @post.title %></td>
-      </tr>
+        <div class="first_info">
+        </div>
 
-      <tr>
-        <td ><label> 작성자 </label></td>
-        <td colspan="3"><%= @post.user.email %></td>
-      </tr>
+        <div class="last_info" style="float:right;">
+            <span class="glyphicon glyphicon-time"></span>
+            <%= "#{time_ago_in_words(@post.created_at)} 전" %>
+            &nbsp;|&nbsp;
+            <i class="fa fa-eye"></i>
+            <%= "#{@post.unique_impression_count}" %>
+            &nbsp;|&nbsp;
+            <i class="fa fa-comments"></i>
+            <%= "#{@post.replies.count}" %>
+        </div>
+      </div>
 
-      <tr>
-        <td ><label> 글 내용 </label> </td>
-        <td colspan="3"> <%= @post.content.html_safe %></td>
-      </tr>
+      <hr />
 
-      <tr>
-        <td ><label> 작성 시간 </label> </td>
-        <td colspan="3"><%= "#{time_ago_in_words(@post.created_at)} 전" %></td>
-      </tr>
+      <!-- 글 제목 표시 부분 -->
+      <div class="content" style="min-height:200px;"><%= @post.content.html_safe %></div>
 
-      <tr>
-        <td><label> 가수 이름 </label></td>
-        <td><%= @post.singer %></td>
-        <td><label> 노래 제목 </label></td>
-        <td><%= @post.song %></td>
-      </tr>
+      <hr />
 
-      <tr>
-        <td><span class="glyphicon glyphicon-thumbs-up"></span></td>
-        <td> <%= @post.recom %> </td>
-        <td><label> 조회수 </label></td>
-        <td><%= "#{@post.unique_impression_count}" %></td>
-      </tr>
-      <tr>
+      <!-- 노래 듣는 영역 -->
+      <div class="listen">
+        <audio controls><source type="audio/mpeg"></audio>
+      </div>
 
-      <tr>
-        <td><label> 노래 듣기 </label></td>
-        <td colspan="3">
-          <audio controls><source type="audio/mpeg"></audio>
-        </td>
-      </tr>
-      <tr>
-    </table>
+      <div class="etc_info">
+        <label> 가수 이름 </label>
+        <%= @post.singer %>
+        <label> 노래 제목 </label>
+        <%= @post.song %>
+        <span class="glyphicon glyphicon-thumbs-up"></span>
+        <%= @post.recom %>
+      </div>
+
 
     <!-- 추천 누르는 부분 tooltip(타인의 글을 추천할 수 있습니다.)으로 꾸미기 -->
     <% if @post.user_id != current_user.id %>
@@ -127,34 +119,10 @@
 
     <hr />
 
-    <!-- 댓글을 쓰는 부분 -->
-    <div class="well">
-         <div style="margin-bottom:10px;">
-           <% if user_signed_in? %>
-            <label> E-mail : <%= current_user.email %> </label>
-           <% else %>
-            <p> 로그인시에 댓글 서비스를 이용할 수 있습니다. </p>
-           <% end %>
-         </div>
-
-         <input type="hidden" id="reply_email" name="reply_email" value="<%= current_user.email %>">
-         <div style="margin-bottom:10px;">
-           <textarea name="reply_content" class="form-control"
-           style="height:80px" id="reply_content_<%= @post.id %>"
-           placeholder="명예를 훼손하는 게시물은 이용약관 및 관련 법률에 의해 제재를 받을 수 있습니다."></textarea>
-         </div>
-         <input type="hidden" id="reply_time" name="reply_time" value="<%= Time.new.inspect[0..18] %>">
-         <div style="margin-bottom:10px;">
-           <button value="<%= @post.id %>" type="submit" class="btn btn-success reply_submit"> 작성 </button>
-         </div>
-    </div>
-
-
     <!-- ajax시 댓글이 나타나는 부분 -->
     <div id="reply_show_<%= @post.id %>">
     </div> <!-- reply_show 마감 -->
     <% @post.replies.reverse_each do |r| %>
-        <div class="well">
           <p> 작성자 : <%= r.email %>
             <% if user_signed_in? && current_user.email == r.email %>
               <span class="pull-right"><a href="/showme/reply_delete/<%= r.id %>" class="btn btn-xs btn-danger">삭제</a></span>
@@ -162,8 +130,25 @@
           </p>
           <p> 내용  : <%= r.content %></p>
           <p> 작성시간 : <%= "#{time_ago_in_words(r.created_at)} 전" %> </p>
-        </div>
+
+          <hr />
     <% end %>
+
+    <!-- 댓글을 쓰는 부분 -->
+     <div style="margin-bottom:10px;margin-left:5px;">
+       <p> <i class="fa fa-comments"></i> 댓글쓰기 </p>
+     </div>
+
+     <input type="hidden" id="reply_email" name="reply_email" value="<%= current_user.email %>">
+     <div style="margin-bottom:10px;">
+       <textarea name="reply_content" class="form-control"
+       style="height:80px" id="reply_content_<%= @post.id %>"
+       placeholder="명예를 훼손하는 글은 이용약관 및 관련 법률에 의해 제재를 받을 수 있습니다."></textarea>
+     </div>
+     <input type="hidden" id="reply_time" name="reply_time" value="<%= Time.new.inspect[0..18] %>">
+     <div style="margin-bottom:10px;">
+       <button value="<%= @post.id %>" type="submit" class="btn btn-success reply_submit"> 작성 </button>
+     </div>
 
   </div> <!-- container 마감 -->
 

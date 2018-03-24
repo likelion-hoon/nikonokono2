@@ -19,9 +19,6 @@ gem 'tinymce-rails-langs'
 # 게시판 텍스트 편집기 lib
 gem 'tinymce-rails'
 
-# 브라우저에서 db관리 lib
-gem 'rails_db'
-
 # key, secret 보호 lib
 gem 'figaro'
 
@@ -91,6 +88,8 @@ group :development, :test do
 end
 
 group :development do
+  # 브라우저에서 db관리 lib
+  gem 'rails_db'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'

@@ -1,0 +1,33 @@
+<!-- 회원의 정보를 보여주는 페이지  -->
+<div class="container" style="margin-top:50px;">
+
+  <div class="alert alert-success">
+    1. 소셜로그인을 하신 회원은 닉네임이 소셜페이지의 이름이 되며 프로필 이미지는 소셜 페이지의 프로필 사진으로 대체 됩니다.<br>
+    2. 기존 회원중 닉네임과 프로필 이미지가 없는경우 여기서 업데이트가 가능합니다.
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6" style="border:2px dashed #333;min-height:200px;border-radius:3px;">
+      회원의 프로필 이미지 들어감
+    </div>
+    <div class="col-sm-6" style="border:2px dashed #333;min-height:200px;border-radius:3px;">
+      이름과 닉네임, 오늘의 한마디
+    </div>
+  </div>
+
+  <div class="row" style="margin-top:20px;">
+    <div class="col-sm-6" style="border:2px dashed #333;min-height:200px;border-radius:3px;">
+      작성한 게시글
+    </div>
+    <div class="col-sm-6" style="border:2px dashed #333;min-height:200px;border-radius:3px;">
+      작성한 댓글
+    </div>
+  </div>
+
+  <div class="row" style="border:2px dashed #333;border-radius:3px;margin-top:20px;">
+    <div class="button" style="float:right;">
+      <%= link_to "회원정보수정", edit_user_registration_path, class:"btn btn-primary" %>
+      <%= link_to "메인페이지로", map_index_path, class:"btn btn-primary" %>
+    </div>
+  </div>
+</div>

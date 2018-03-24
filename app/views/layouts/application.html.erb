@@ -32,14 +32,25 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li>
+              <%= link_to '<i class="fa fa-bullhorn"></i> 공지사항'.html_safe, posts_path %>
+            </li>
+            <li>
               <%= link_to '<span class="glyphicon glyphicon-map-marker"></span> 위치 찾기'.html_safe, map_map_path %>
             </li>
             <li>
-              <%= link_to '<i class="fa fa-microphone"></i> Show me the coin'.html_safe, posts_path %>
+              <%= link_to '<i class="fa fa-upload"></i> 노래 업로드'.html_safe, posts_path %>
             </li>
 
-
-
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">게시판<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"> 자유 게시판 </a></li>
+                    <li><a href="#"> 토론장 </a></li>
+                </ul>
+            </li>
+            <li>
+              <%= link_to '<i class="fa fa-music"></i> 노래 순위'.html_safe, posts_path %>
+            </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li>
@@ -55,11 +66,10 @@
               <% else %>
                 <%= link_to '<i class="fa fa-sign-in" style="font-size:20px"></i>'.html_safe, new_user_session_path %>
               <% end %>
-
-              <ul class="dropdown-menu">
-                  <li><%= link_to '<span class="glyphicon glyphicon-log-out"></span> 로그아웃'.html_safe, destroy_user_session_path %></li>
-                  <li><a href="#"><span class="glyphicon glyphicon-user"></span> 나의 프로필 </a></li>
-              </ul>
+                <ul class="dropdown-menu">
+                    <li><%= link_to '<span class="glyphicon glyphicon-log-out"></span> 로그아웃'.html_safe, destroy_user_session_path %></li>
+                    <li><%= link_to '<i class="fa fa-user"></i>  나의 프로필'.html_safe, user_mypage_path(current_user.id) if user_signed_in? %></li>
+                </ul>
             </li>
           </ul>  <!-- navbar-right의 끝 -->
         </div>   <!-- collapse navbar-collapse 의 끝-->
@@ -69,7 +79,7 @@
     </nav>
 
     <!-- 알림 표시 -->
-    <p id="notice" class="alert alert-success"><%= notice %></p>
+    <!-- <p id="notice" class="alert alert-success"><%= notice %></p> -->
 
     <footer class="footer">
       <div class="container">
