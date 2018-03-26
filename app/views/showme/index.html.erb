@@ -21,7 +21,7 @@
         <% end %>
       </div>
 
-      <!-- 테이블 검색 부분 -->
+    <!-- 테이블 검색 부분 -->
       <div class="search_form" style="margin-bottom:10px;float:right;">
         <%= form_tag(posts_path, method: "get", id: "search-form") do %>
           <%= text_field_tag :search, params[:search],  style: "width:180px;", placeholder: "제목,내용,가수,노래 검색", class: "form-control col-xs-5" %>
@@ -29,6 +29,17 @@
         <% end %>
       </div>
     </div>
+    <%= link_to '전체 목록', posts_path, class: "btn btn-sm btn-primary" if params[:search] %>
+
+  
+
+
+    <!-- <div class="search_form" style="margin-bottom:15px;float:right;">
+      <form>
+          <input type="text" class="form-control col-xs-5" style="width:120px;" placeholder="제목 및 내용">
+          <%= link_to '<i class="fa fa-search"></i>'.html_safe, posts_path, class: "btn btn-primary", style: "margin-left:3px;" %>
+      </form>
+    </div> -->
 
     <table class="table table-striped" style="margin-top:10px;">
       <tr>
