@@ -5,11 +5,25 @@ class ShowmeController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :log_impression, only: [:show]
 
+<<<<<<< HEAD
   def index
     if params[:search]
       @posts = Post.search(params[:search]).order('created_at asc')
     else
       @posts = Post.with_deleted.all.order("id desc")
+=======
+  def log_impression
+   @hit_post = Post.find(params[:id])
+   @hit_post.impressions.create(ip_address: request.remote_ip, user_id:current_user.id)
+  end
+
+  def index # 이전 : board
+    @posts = Post.all
+    if params[:search]
+      @posts = Post.search(params[:search]).order('created_at asc')
+    else
+      @posts = Post.all.order('created_at desc')
+>>>>>>> 98d633b3f2fbc1fccc0bceae9808be0661175c53
     end
     @posts = Kaminari.paginate_array(@posts).page(params[:page])
   end
@@ -93,12 +107,15 @@ class ShowmeController < ApplicationController
     @reply.destroy
 
     redirect_to action: "show", id: @reply.post.id
+<<<<<<< HEAD
   end
 
   # 조회수 액션
   def log_impression
    @hit_post = Post.find(params[:id])
    @hit_post.impressions.create(ip_address: request.remote_ip, user_id:current_user.id)
+=======
+>>>>>>> 98d633b3f2fbc1fccc0bceae9808be0661175c53
   end
 
   # 시간을 한글 형식으로 리턴해주는 함수(board_show에서 사용)

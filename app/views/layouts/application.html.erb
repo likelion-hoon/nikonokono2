@@ -32,16 +32,28 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li>
+<<<<<<< HEAD
               <%= link_to '<i class="fa fa-bullhorn"></i> 공지사항'.html_safe, root_path %>
+=======
+              <%= link_to '<i class="fa fa-bullhorn"></i> 공지사항'.html_safe, posts_path %>
+            </li>
+            <li>
+              <%= link_to '<span class="glyphicon glyphicon-map-marker"></span> 위치 찾기'.html_safe, map_map_path %>
+>>>>>>> 98d633b3f2fbc1fccc0bceae9808be0661175c53
             </li>
 
             <li>
               <%= link_to '<i class="fa fa-upload"></i> 노래 업로드'.html_safe, posts_path %>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 98d633b3f2fbc1fccc0bceae9808be0661175c53
             </li>
 
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">게시판<span class="caret"></span></a>
                 <ul class="dropdown-menu">
+<<<<<<< HEAD
                     <li><%= link_to '자유게시판', root_path %></li>
                     <li><%= link_to '토론장', root_path %></li>
                 </ul>
@@ -54,6 +66,24 @@
             <li>
               <%= link_to '<i class="fa fa-music"></i> 노래 순위'.html_safe, root_path %>
             </li>
+=======
+                    <li><a href="#"> 자유 게시판 </a></li>
+                    <li><a href="#"> 토론장 </a></li>
+                </ul>
+            </li>
+            <li>
+              <%= link_to '<i class="fa fa-music"></i> 노래 순위'.html_safe, posts_path %>
+            </li>
+=======
+            </li>
+            <li>
+              <%= link_to '<i class="fa fa-list-ul"></i> 게시판'.html_safe, posts_path %>
+            </li>
+            <li>
+              <%= link_to '<i class="fa fa-music"></i> 노래 순위'.html_safe, posts_path %>
+            </li>
+>>>>>>> 58bf279... 게시판 검색 기능 추가
+>>>>>>> 98d633b3f2fbc1fccc0bceae9808be0661175c53
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li>

@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20180326063043) do
 
   create_table "bulletins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -18,6 +19,9 @@ ActiveRecord::Schema.define(version: 20180326063043) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+=======
+ActiveRecord::Schema.define(version: 20180324111306) do
+>>>>>>> 98d633b3f2fbc1fccc0bceae9808be0661175c53
 
   create_table "impressions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "impressionable_type"
@@ -92,6 +96,11 @@ ActiveRecord::Schema.define(version: 20180326063043) do
     t.datetime "updated_at", null: false
     t.string "provider"
     t.string "uid"
+<<<<<<< HEAD
+=======
+    t.string "name"
+    t.text "image"
+>>>>>>> 98d633b3f2fbc1fccc0bceae9808be0661175c53
     t.string "nickname"
     t.text "description"
     t.index ["email"], name: "index_users_on_email", unique: true
