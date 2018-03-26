@@ -3,9 +3,9 @@ class User < ApplicationRecord
   validates_uniqueness_of :email, :nickname  # email과 nickname은 유일성을 만족해야 한다.
 
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook, :google_oauth2, :naver]
+         :recoverable, :rememberable, :trackable, :confirmable, :validatable, :omniauthable, :omniauth_providers => [:facebook, :google_oauth2, :naver]
 
    def self.new_with_session(params, session)
      super.tap do |user|

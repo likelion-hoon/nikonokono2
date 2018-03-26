@@ -11,7 +11,6 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <style>
-
     </style>
   </head>
 
@@ -43,7 +42,9 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">게시판<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><%= link_to '자유게시판', root_path %></li>
-                    <li><%= link_to '토론장', root_path %></li>
+                    <li><%= link_to 'QnA게시판', root_path %></li>
+                    <li><%= link_to '노래추천 게시판', root_path %></li>
+                    <li><%= link_to '노래방추천 게시판', root_path %></li>
                 </ul>
             </li>
 
@@ -81,6 +82,9 @@
       <!-- /.container-fluid -->
     </nav>
 
+    <%= render partial: "shared/flash_messages", flash: flash %>
+    <%= yield %>
+
     <!-- 알림 표시 -->
     <!-- <p id="notice" class="alert alert-success"><%= notice %></p> -->
 
@@ -107,6 +111,8 @@
       </div>
     </footer>
 
-    <%= yield %>
+
+
+
   </body>
 </html>

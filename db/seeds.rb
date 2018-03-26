@@ -6,11 +6,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 user1 = User.new(
-  :email => 'monki0120@naver.com',
+  :email => 'nikofan@naver.com',
   :nickname => '공릉동꿀주먹',
   :description => '안녕하세요~ 반갑습니다.',
   :password => '123456',
-  :password_confirmation => '123456'
+  :password_confirmation => '123456',
+  :confirmed_at => '2018-03-26 08:23:38 UTC'
 )
 user1.save!
 
@@ -19,7 +20,8 @@ user2 = User.new(
   :nickname => '폴리텍',
   :description => '안녕~ 하이.',
   :password => '123456',
-  :password_confirmation => '123456'
+  :password_confirmation => '123456',
+  :confirmed_at => '2018-03-26 08:23:38 UTC'
 )
 user2.save!
 
@@ -28,7 +30,8 @@ user3 = User.new(
   :nickname => '수내꿀주먹이얌',
   :description => '반가워요~ 디자인과입니다.',
   :password => '123456',
-  :password_confirmation => '123456'
+  :password_confirmation => '123456',
+  :confirmed_at => '2018-03-26 08:23:38 UTC'
 )
 user3.save!
 
@@ -37,7 +40,8 @@ user4 = User.new(
   :nickname => '한전맨',
   :description => '내가 게임 1짱이다',
   :password => '123456',
-  :password_confirmation => '123456'
+  :password_confirmation => '123456',
+  :confirmed_at => '2018-03-26 08:23:38 UTC'
 )
 user4.save!
 
