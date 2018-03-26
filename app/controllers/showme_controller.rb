@@ -1,30 +1,24 @@
 class ShowmeController < ApplicationController
 
   # showme 컨트롤러에 접속하려면 user를 인증받아야 한다.
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :log_impression, only: [:show]
 
-  def log_impression
-   @hit_post = Post.find(params[:id])
-   @hit_post.impressions.create(ip_address: request.remote_ip, user_id:current_user.id)
-  end
-
-  def index # 이전 : board
-    @posts = Post.all
+  def index
     if params[:search]
       @posts = Post.search(params[:search]).order('created_at asc')
     else
-      @posts = Post.all.order('created_at desc')
+      @posts = Post.with_deleted.all.order("id desc")
     end
     @posts = Kaminari.paginate_array(@posts).page(params[:page])
   end
 
-  def new #이전 : board_write_form
+  def new
     @post = Post.new
   end
 
-  def create #이전 : board_write
+  def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
 
@@ -37,19 +31,19 @@ class ShowmeController < ApplicationController
     end
   end
 
-  def show #이전 : board_show
+  def show
   end
 
   # 게시판 수정 폼
-  def edit #이전 : board_update_form
+  def edit
   end
 
-  def update #이전 : board_update
+  def update
     @post.update(post_params)
     redirect_to posts_path
   end
 
-  def destroy #이전 : board_delete
+  def destroy
     @post.destroy
     redirect_to posts_path
   end
@@ -74,11 +68,10 @@ class ShowmeController < ApplicationController
       @post.recom = @post.recom + 1
       @post.save
       @recom.save
-      redirect_to action: "board_show", id: params[:id]
+      redirect_to action: "show", id: params[:id]
     else
-      redirect_to action: "board_show", id: params[:id]
+      redirect_to action: "show", id: params[:id]
     end
-
   end
 
   # 댓글관련 action
@@ -100,6 +93,12 @@ class ShowmeController < ApplicationController
     @reply.destroy
 
     redirect_to action: "show", id: @reply.post.id
+  end
+
+  # 조회수 액션
+  def log_impression
+   @hit_post = Post.find(params[:id])
+   @hit_post.impressions.create(ip_address: request.remote_ip, user_id:current_user.id)
   end
 
   # 시간을 한글 형식으로 리턴해주는 함수(board_show에서 사용)

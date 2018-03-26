@@ -56,32 +56,45 @@
   <p id="notice"><%= notice %></p>
 
   <div class="container" style="margin-top:80px">
-      <div class="title">
-        <h2><%= @post.title %></h2>
+      <div class="row">
+        <div class="title">
+          <h2>글 제목 : <%= @post.title %></h2>
+        </div>
       </div>
 
-      <div class="row" style="margin-top:20px">
-
-        <div class="first_info">
-        </div>
-
-        <div class="last_info" style="float:right;">
-            <span class="glyphicon glyphicon-time"></span>
-            <%= "#{time_ago_in_words(@post.created_at)} 전" %>
+      <div class="row">
+        <div class="info" style="margin-top:20px">
+          <div class="first_info" style="float:left;">
+            <h5>작성자 : <span class="label label-primary"><%= User.find(@post.user_id).nickname %></span></h5>
+            <label> 가수 이름 : </label>
+            <%= @post.singer %>
             &nbsp;|&nbsp;
-            <i class="fa fa-eye"></i>
-            <%= "#{@post.unique_impression_count}" %>
-            &nbsp;|&nbsp;
-            <i class="fa fa-comments"></i>
-            <%= "#{@post.replies.count}" %>
+            <label> 노래 제목 : </label>
+            <%= @post.song %>
+          </div>
+
+          <div class="last_info" style="float:right;">
+              <span class="glyphicon glyphicon-time"></span>
+              <%= "#{time_ago_in_words(@post.created_at)} 전" %>
+              &nbsp;|&nbsp;
+              <i class="fa fa-eye"></i>
+              <%= "#{@post.unique_impression_count}" %>
+              &nbsp;|&nbsp;
+              <i class="fa fa-comments"></i>
+              <%= "#{@post.replies.count}" %>
+              &nbsp;|&nbsp;
+              <span class="glyphicon glyphicon-thumbs-up"></span>
+              <%= @post.recom %>
+          </div>
         </div>
       </div>
 
       <hr />
 
       <!-- 글 제목 표시 부분 -->
-      <div class="content" style="min-height:200px;"><%= @post.content.html_safe %></div>
-
+      <div class="row">
+        <div class="content" style="min-height:200px;"><%= @post.content.html_safe %></div>
+      </div>
       <hr />
 
       <!-- 노래 듣는 영역 -->
@@ -89,21 +102,10 @@
         <audio controls><source type="audio/mpeg"></audio>
       </div>
 
-      <div class="etc_info">
-        <label> 가수 이름 </label>
-        <%= @post.singer %>
-        <label> 노래 제목 </label>
-        <%= @post.song %>
-        <span class="glyphicon glyphicon-thumbs-up"></span>
-        <%= @post.recom %>
-      </div>
-
-
     <!-- 추천 누르는 부분 tooltip(타인의 글을 추천할 수 있습니다.)으로 꾸미기 -->
     <% if @post.user_id != current_user.id %>
       <div class="thumb-up" style="text-align:center;" data-toggle="tooltip" data-placement="bottom" title="다른 사람의 노래를 추천할 수 있습니다.">
-        <h2><%= link_to "",'/showme/recommend/'+@post.id.to_s,
-        class: 'glyphicon glyphicon-thumbs-up',  data: {confirm: '해당 노래를 추천하시겠습니까?'} %></h2>
+        <%= link_to "", showme_recommend_path(@post.id), class: 'glyphicon glyphicon-thumbs-up', data: {confirm: '해당 노래를 추천하시겠습니까?'}, style: 'font-size:30px;' %>
       </div>
     <% end %>
 

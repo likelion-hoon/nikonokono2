@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180324111306) do
+ActiveRecord::Schema.define(version: 20180326063043) do
+
+  create_table "bulletins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "impressions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "impressionable_type"
@@ -47,6 +54,10 @@ ActiveRecord::Schema.define(version: 20180324111306) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "bulletin_id"
+    t.datetime "deleted_at"
+    t.index ["bulletin_id"], name: "index_posts_on_bulletin_id"
+    t.index ["deleted_at"], name: "index_posts_on_deleted_at"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -81,14 +92,13 @@ ActiveRecord::Schema.define(version: 20180324111306) do
     t.datetime "updated_at", null: false
     t.string "provider"
     t.string "uid"
-    t.string "name"
-    t.text "image"
     t.string "nickname"
     t.text "description"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "posts", "bulletins"
   add_foreign_key "posts", "users"
   add_foreign_key "replies", "posts"
 end

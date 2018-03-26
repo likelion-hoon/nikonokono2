@@ -5,8 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
-
+gem 'paranoia', '~> 2.2'
 # devise 한글화 lib
 gem 'devise-i18n'
 

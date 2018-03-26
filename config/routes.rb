@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
-  #resources :bulletins do
-  resources :posts, controller: 'showme'
-  #end
+  # resources :notices (공지사항 게시판 추후예정)
+  resources :posts, controller: 'showme' # 업로드 게시판
+  resources :bulletins do
+    resources :boards
+  end
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
