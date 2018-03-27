@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :admins
   # resources :notices (공지사항 게시판 추후예정)
   resources :posts, controller: 'showme' # 업로드 게시판
   resources :bulletins do
