@@ -5,12 +5,22 @@ class ShowmeController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :log_impression, only: [:show]
 
+<<<<<<< HEAD
   def index
     if params[:search]
       @posts = Post.search(params[:search]).order('created_at asc')
     else
       @posts = Post.with_deleted.all.order("id desc")
     end
+=======
+  def log_impression
+   @hit_post = Post.find(params[:id])
+   @hit_post.impressions.create(ip_address: request.remote_ip, user_id:current_user.id)
+  end
+
+  def index # 이전 : board
+    @posts = Post.all.order('id desc')
+>>>>>>> parent of 98d633b... 게시판 검색 기능 추가
     @posts = Kaminari.paginate_array(@posts).page(params[:page])
   end
 
@@ -82,7 +92,7 @@ class ShowmeController < ApplicationController
     @reply.post_id = params[:id] # post_id값도 설정해 줘야 한다.
 
     if @reply.save
-      redirect_to action: "show", id: params[:id]
+      redirect_to action: "board_show", id: params[:id]
     else # reply가 저장되지 않으면
       render :plain => @reply.errors.messages[:title].first
     end
@@ -92,7 +102,18 @@ class ShowmeController < ApplicationController
     @reply = Reply.find(params[:reply_id])
     @reply.destroy
 
-    redirect_to action: "show", id: @reply.post.id
+    redirect_to action: "board_show", id: @reply.post.id
+  end
+
+  # 시간을 한글 형식으로 리턴해주는 함수(board.erb에서 사용)
+  def showDateInBoard(time)
+    year = time.first(4)
+    month = time[5..6]
+    date = time[8..9]
+    hour = time[11..12]
+
+    s = year+'년 '+month+'월 '+date+'일 '+hour+'시 '
+    return s
   end
 
   # 조회수 액션

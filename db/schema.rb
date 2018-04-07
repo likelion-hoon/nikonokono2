@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20180326091641) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -35,6 +36,9 @@ ActiveRecord::Schema.define(version: 20180326091641) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+=======
+ActiveRecord::Schema.define(version: 20180322042335) do
+>>>>>>> parent of 98d633b... 게시판 검색 기능 추가
 
   create_table "impressions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "impressionable_type"
@@ -116,8 +120,13 @@ ActiveRecord::Schema.define(version: 20180326091641) do
     t.datetime "updated_at", null: false
     t.string "provider"
     t.string "uid"
+<<<<<<< HEAD
     t.string "nickname"
     t.text "description"
+=======
+    t.string "name"
+    t.text "image"
+>>>>>>> parent of 98d633b... 게시판 검색 기능 추가
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

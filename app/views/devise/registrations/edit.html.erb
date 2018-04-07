@@ -1,65 +1,43 @@
-<div class="container" style='margin-top:50px;'>
-  <div class="col-sm-offset-3 col-sm-6" style="background-color:#efefef;border-radius:5px;">
-  <h2 style="text-align:center;margin-bottom:30px;"> 사용자 수정 Page </h2>
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <%= devise_error_messages! %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
 
-    <div class="field" style="margin-bottom:15px;">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", style: "width:230px" %>
-    </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
-
-    <div class="field" style="margin-bottom:15px;">
-      <%= f.label :password %> <i>(변경하고 싶지 않으시다면, 빈칸으로 남겨두세요.)</i><br />
-      <%= f.password_field :password, autocomplete: "off", class: "form-control", style: "width:230px" %>
-
-
-      <!-- 6자리 이상 입력을 안할시에 경고창 띄우기
-      <% if @minimum_password_length %>
-        <b> 최소 <%= @minimum_password_length %> 자리를 입력해야합니다.</b>
-      <% end %> -->
-    </div>
-
-    <div class="field" style="margin-bottom:15px;">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", style: "width:230px" %>
-    </div>
-
-    <div class="field" style="margin-bottom:15px;">
-      <%= f.label :current_password %> <i>(현재 비밀번호를 입력하셔야 수정이 가능합니다.)</i><br />
-      <%= f.password_field :current_password, autocomplete: "off", class: "form-control", style: "width:230px" %>
-    </div>
-
-    <!-- 이미지 추가하기  -->
-    <div class="form-group" style="margin-bottom:15px;">
-       <label for="exampleInputFile">프로필 사진</label>
-       <input type="file" id="exampleInputFile">
-    </div>
-
-    <div class="actions" style="margin-bottom:25px;">
-      <%= f.submit "수정", class: "btn btn-primary", style: "float:right"%>
-    </div>
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-
-
-
-  <div class="user_destroy" style="margin-top:80px;">
-    <hr>
-    <h3 style="margin-bottom:10px;"> 계정 삭제하기 </h3>
-
-    <div class="edit_button">
-      <%= link_to "돌아가기", :back, class: "btn btn-primary pull-left" %>
-      <%= button_to "계정 삭제", registration_path(resource_name), class: "btn btn-danger pull-right",
-      data: { confirm: "정말 계정을 삭제하시겠어요?" }, method: :delete %>
-    </div>
+  <div class="field">
+    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> characters minimum</em>
+    <% end %>
   </div>
 
-
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
-</div> <!-- 컨테이너의 끝 -->
+
+  <div class="field">
+    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.password_field :current_password, autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
+
+<h3>Cancel my account</h3>
+
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+<%= link_to "Back", :back %>

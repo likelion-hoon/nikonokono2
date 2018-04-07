@@ -14,9 +14,6 @@ Rails.application.routes.draw do
   get 'map/index'
   get 'map/map' => "map#map"
 
-  # controller user routing
-  get 'mypage/:id' => 'user#mypage', as: 'user_mypage'
-
   # controller showme routing
   post 'showme/reply_write' => 'showme#reply_write'
   get 'showme/recommend/:id' => 'showme#recommend', as: 'showme_recommend'

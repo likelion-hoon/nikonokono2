@@ -34,6 +34,7 @@ body {
 }
 
 /* navbar 가장 부모 스타일을 navbar-inverse로 정함 */
+
 .navbar-inverse {
  background-color: $navbar-backgroundColor;
  border: 1px solid black;
@@ -59,7 +60,6 @@ body {
 .navbar-inverse .navbar-nav .open .dropdown-menu {
     color: $backgroundColor;
     background-color: $navbar-backgroundColor;
-    border-radius:4px;
 }
 
 .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {

@@ -1,7 +1,5 @@
 class User < ApplicationRecord
   has_many :posts
-  validates_uniqueness_of :email, :nickname  # email과 nickname은 유일성을 만족해야 한다.
-
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
