@@ -1,16 +1,22 @@
 class BoardsController < ApplicationController
+
   before_action :set_bulletin
   before_action :set_board, only: [:show, :edit, :update, :destroy]
 
+  respond_to :html
+
   def index
-    @boards = @bulletin.present? ? @bulletin.boards.all : board.all
+    @boards = @bulletin.present? ? @bulletin.boards.all : Board.all
+    respond_with(@boards)
   end
 
   def show
+    respond_with(@board)
   end
 
   def new
-    @board = @bulletin.present? ? @bulletin.boards.new : board.new
+    @board = @bulletin.present? ? @bulletin.boards.new : Board.new
+    respond_with(@board)
   end
 
   def edit
@@ -18,10 +24,11 @@ class BoardsController < ApplicationController
 
   def create
     @board = @bulletin.present? ? @bulletin.boards.new(board_params) : board.new(board_params)
+    @board.save
 
     respond_to do |format|
       if @board.save
-        format.html { redirect_to (@bulletin.present? ? [@board.bulletin, @board] : @board), notice: 'board was successfully created.' }
+        format.html { redirect_to (@bulletin.present? ? [@board.bulletin, @board] : @board) }
         format.json { render :show, status: :created, location: @board }
       else
         format.html { render :new }
@@ -32,13 +39,13 @@ class BoardsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @board.update(board_params)
-        format.html { redirect_to (@bulletin.present? ? [@board.bulletin, @board] : @board), notice: 'board was successfully updated.' }
-        format.json { render :show, status: :ok, location: @board }
-      else
-        format.html { render :edit }
-        format.json { render json: @board.errors, status: :unprocessable_entity }
-      end
+       if @board.update(board_params)
+         format.html { redirect_to (@bulletin.present? ? [@board.bulletin, @board] : @board), notice: 'board was successfully updated.' }
+         format.json { render :show, status: :ok, location: @board }
+       else
+         format.html { render :edit }
+         format.json { render json: @board.errors, status: :unprocessable_entity }
+       end
     end
   end
 
@@ -51,19 +58,19 @@ class BoardsController < ApplicationController
   end
 
   private
-  def set_bulletin
-    @bulletin = Bulletin.find(params[:bulletin_id]) if params[:bulletin_id].present?
-  end
-
-  def set_board
-    if @bulletin.present?
-      @board = @bulletin.boards.find(params[:id])
-    else
-      @board = board.find(params[:id])
+    def set_bulletin
+      @bulletin = Bulletin.find(params[:bulletin_id]) if params[:bulletin_id].present?
     end
-  end
 
-  def board_params
-    params.require(:board).permit(:title, :content)
-  end
+    def set_board
+      if @bulletin.present?
+        @board = @bulletin.boards.find(params[:id])
+      else
+        @board = Board.find(params[:id])
+      end
+    end
+
+    def board_params
+      params.require(:board).permit(:title, :content)
+    end
 end

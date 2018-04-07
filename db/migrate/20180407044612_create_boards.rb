@@ -4,8 +4,7 @@ class CreateBoards < ActiveRecord::Migration[5.1]
       t.string :title
       t.text :content
 
-      t.references :bulletin, foreign_key: true  # bulletin 외래키 자리
-      t.references :user,  foreign_key: true     # user 외래키 자리
+      t.references :bulletin, foreign_key: true
       t.timestamps
     end
   end

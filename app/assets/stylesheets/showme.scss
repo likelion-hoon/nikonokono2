@@ -1,3 +1,169 @@
 // Place all the styles related to the showme controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+$background-color: #fff;
+$navbar-background-color: #333;
+$navbar-font-color: #dfdfdf;
+$navbar-font-color-hover: #ffa500;
+$navbar-brand-color: #ffa500;
+$navbar-brand-color-hover: #eea200;
+
+body {
+  background-color: $background-color;
+  margin:0;
+  padding:0;
+}
+
+/* navbar 가장 부모 스타일을 navbar-inverse로 정함 */
+
+.navbar-inverse {
+ background-color: $navbar-background-color;
+ border: 1px solid black;
+ border-radius: 3px;
+}
+
+.navbar-inverse .navbar-brand {
+  color: $navbar-brand-color;
+}
+
+.navbar-inverse .navbar-brand:hover,
+.navbar-inverse .navbar-brand:focus {
+  color: $navbar-brand-color-hover;
+  background-color: transparent;
+}
+
+/* navbar 가장 부모 스타일을 navbar-inverse로 정함 */
+
+.navbar-inverse {
+ background-color: $navbar-background-color;
+ border: 1px solid black;
+ border-radius: 3px;
+}
+
+.navbar-inverse .navbar-brand {
+  color: $navbar-brand-color;
+}
+
+
+.navbar-default {
+ background-color: #333;
+ color: #dfdfdf;
+ border: 1px solid #333;
+}
+
+// nav-bar 오른쪽 끝 3줄 (icon-bar)
+.navbar-inverse .navbar-toggle .icon-bar {
+  background-color: $background-color;
+}
+
+.navbar-inverse .navbar-nav .open .dropdown-menu {
+    color: $background-color;
+    background-color: $navbar-background-color;
+}
+
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+    color: $navbar-font-color;
+    background-color: transparent;
+}
+
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover,
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: $navbar-font-color-hover;
+    background-color: transparent;
+}
+
+.navbar-inverse .navbar-header > button > span.icon-bar:hover {
+  color: $navbar-font-color-hover;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: $navbar-font-color;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+  color: $navbar-font-color-hover;
+}
+
+.navbar-inverse .navbar-nav .dropdown-menu > li > a:hover {
+  color: $navbar-font-color-hover;
+}
+
+.navbar-inverse .navbar-brand:focus {
+  color: $navbar-brand-color-hover;
+  background-color: transparent;
+}
+
+// nav-bar 오른쪽 끝 3줄 (icon-bar)
+.navbar-inverse .navbar-toggle .icon-bar {
+  background-color: $background-color;
+}
+
+.navbar-inverse .navbar-nav .open .dropdown-menu {
+    color: $background-color;
+    background-color: $navbar-background-color;
+}
+
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+    color: $navbar-font-color;
+    background-color: transparent;
+}
+
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover,
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: $navbar-font-color-hover;
+    background-color: transparent;
+}
+
+.navbar-inverse .navbar-header > button > span.icon-bar:hover {
+  color: $navbar-font-color-hover;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: $navbar-font-color;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+  color: $navbar-font-color-hover;
+}
+
+.navbar-inverse .navbar-nav .dropdown-menu > li > a:hover {
+  color: $navbar-font-color-hover;
+}
+
+// 푸터 꾸미기
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: #333;
+  color: #dfdfdf;
+}
+
+#notice {
+  top:0;
+  width:100%;
+  position:sticky;
+  text-align:center;
+}
+
+// 버튼 css 설정
+.btn-kono {
+  color: #ffa500;
+  background-color: #333;
+  border-color: #333;
+
+  &:hover {
+    color: #eea200;
+  }
+}
+
+.label-kono {
+  font-size: 12px;
+  color: #eea200;
+  background-color: #333;
+  border-color: #333;
+}

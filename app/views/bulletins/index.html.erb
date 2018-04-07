@@ -17,9 +17,9 @@
         <td><%= bulletin.title %></td>
         <td><%= bulletin.description %></td>
         <td>
-          <%= link_to 'Show', bulletin, class: 'btn btn-default'  %>
-          <%= link_to 'Edit', edit_bulletin_path(bulletin), class: 'btn btn-default'  %>
-          <%= link_to 'Destroy', bulletin, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default'  %>
+          <%= link_to '수정', edit_bulletin_path(bulletin), class: 'btn btn-default'  %>
+          <%= link_to '삭제', bulletin, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default'  %>
+          <%= link_to '글 보기', bulletin_boards_path(bulletin), class: 'btn btn-default' %>
         </td>
       </tr>
     <% end %>

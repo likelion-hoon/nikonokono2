@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'simple_form'
+
 gem 'paranoia', '~> 2.2'
 # devise 한글화 lib
 gem 'devise-i18n'
@@ -17,9 +19,6 @@ gem 'tinymce-rails-langs'
 
 # 게시판 텍스트 편집기 lib
 gem 'tinymce-rails'
-
-# 브라우저에서 db관리 lib
-gem 'rails_db'
 
 # key, secret 보호 lib
 gem 'figaro'

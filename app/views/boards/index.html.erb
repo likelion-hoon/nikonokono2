@@ -1,25 +1,33 @@
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<p id="notice"><%= notice %></p>
 
-  <tbody>
-    <% @boards.each do |board| %>
+<div class="container">
+  <h2> <%= @bulletin.title %>  </h2>
+  <table>
+    <thead>
       <tr>
-        <td><%= board.title %></td>
-        <td><%= board.content.html_safe %></td>
-        <td><%= link_to 'Show', (@bulletin.present? ? [board.bulletin, board] : board), class: 'btn btn-default' %></td>
-        <td><%= link_to (@bulletin.present? ? edit_bulletin_board_path(board.bulletin, board) : edit_board_path(board)), class: 'btn btn-default'  %></td>
-        <td><%= link_to 'Destroy', (@bulletin.present? ? [board.bulletin, board] : board), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default' %></td>
+        <th>Title</th>
+        <th>Content</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @boards.each do |board| %>
+        <tr>
+          <td style="width:30%"><%= board.title %></td>
+          <td style="width:30%"><%= board.content %></td>
+          <td>
+            <%= link_to 'Show', (@bulletin.present? ? [board.bulletin, board] : board), class: 'btn btn-default' %>
+            <%= link_to 'Edit', (@bulletin.present? ? edit_bulletin_board_path(board.bulletin, board) : edit_board_path(board)), class: 'btn btn-default' %>
+            <%= link_to 'Destroy', (@bulletin.present? ? [board.bulletin, board] : board), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Board', (@bulletin.present? ?  new_bulletin_board_path(@bulletin) : new_board_path), class: 'btn btn-default' %>
+  <br>
+
+  <%= link_to '글 쓰기', (@bulletin.present? ?  new_bulletin_board_path(@bulletin) : new_board_path), class: 'btn btn-default' %>
+  <%= link_to "돌아가기", :back, class: 'btn btn-default' %>
+</div>

@@ -5,22 +5,18 @@ class ShowmeController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :log_impression, only: [:show]
 
-<<<<<<< HEAD
+  respond_to :html
+
+  def main
+    @posts = Post.all.where(id: 1..5)
+  end
+
   def index
     if params[:search]
       @posts = Post.search(params[:search]).order('created_at asc')
     else
       @posts = Post.with_deleted.all.order("id desc")
     end
-=======
-  def log_impression
-   @hit_post = Post.find(params[:id])
-   @hit_post.impressions.create(ip_address: request.remote_ip, user_id:current_user.id)
-  end
-
-  def index # 이전 : board
-    @posts = Post.all.order('id desc')
->>>>>>> parent of 98d633b... 게시판 검색 기능 추가
     @posts = Kaminari.paginate_array(@posts).page(params[:page])
   end
 
@@ -92,7 +88,7 @@ class ShowmeController < ApplicationController
     @reply.post_id = params[:id] # post_id값도 설정해 줘야 한다.
 
     if @reply.save
-      redirect_to action: "board_show", id: params[:id]
+      redirect_to action: "show", id: params[:id]
     else # reply가 저장되지 않으면
       render :plain => @reply.errors.messages[:title].first
     end
@@ -133,6 +129,11 @@ class ShowmeController < ApplicationController
 
     s = year+'년 '+month+'월 '+date+'일 '+hour+'시 '+minute+'분 '+second+'초'
     return s
+  end
+
+  # 노래 순위 액션
+  def rank
+
   end
 
   # 사용할 메서드 정의

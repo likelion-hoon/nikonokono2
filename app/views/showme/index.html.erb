@@ -6,19 +6,32 @@
 -->
 <!DOCTYPE html>
 <html>
-  <head>
-  </head>
+<head>
+  <style type="text/css">
+    h1 {
+      text-align:center;
+    }
 
-  <body>
-<<<<<<< HEAD
-  <div class="container" style="margin-top:60px;">
+    #post_content {
+       border: 2px solid gray;
+       border-radius: 5px;
+       margin : 10px 20px;
+       padding : 8px 8px;
+       border-left: 6px solid #eea200;
+       word-wrap: break-word;
+    }
+  </style>
+</head>
 
-    <div class="info">
+<body>
+  <div class="container" style="margin-top:60px;background-color:#fefefe;border-radius:10px;">
+
+    <div class="info" style="margin-bottom:20px;">
       <div class="label" style="vertical-align:sub;">
         <% if params[:search] %>
           <%= link_to '전체 목록', posts_path, class: "btn btn-sm btn-primary" %>
         <% else %>
-          <label class="label label-primary">노래 업로드 게시판</label>
+          <label class="label label-kono">노래 업로드 게시판</label>
         <% end %>
       </div>
 
@@ -26,70 +39,50 @@
       <div class="search_form" style="margin-bottom:10px;float:right;">
         <%= form_tag(posts_path, method: "get", id: "search-form") do %>
           <%= text_field_tag :search, params[:search],  style: "width:180px;", placeholder: "제목,내용,가수,노래 검색", class: "form-control col-xs-5" %>
-          <button type="submit" class="btn btn-primary", style="margin-left:3px;"><i class="fa fa-search"></i></button>
+          <button type="submit" class="btn btn-kono", style="margin-left:3px;"><i class="fa fa-search"></i></button>
         <% end %>
       </div>
     </div>
-    <%= link_to '전체 목록', posts_path, class: "btn btn-sm btn-primary" if params[:search] %>
 
-=======
-  <div class="container">
-    <!-- 테이블 검색 부분 -->
-    <div class="search_form" style="margin-bottom:15px;float:right;">
-      <form>
-          <input type="text" class="form-control col-xs-5" style="width:120px;" placeholder="제목 및 내용">
-          <%= link_to '<i class="fa fa-search"></i>'.html_safe, posts_path, class: "btn btn-primary", style: "margin-left:3px;" %>
-      </form>
-    </div>
->>>>>>> parent of 98d633b... 게시판 검색 기능 추가
-
-    <table class="table table-striped" style="margin-top:10px;">
-      <tr>
-        <th> 번호 </th>
-        <th> 제목 </th>
-        <th> 가수 </th>
-        <th> 노래 </th>
-        <th> 작성자 </th>
-<<<<<<< HEAD
-        <th><i class="fa fa-eye"></i></th>
-        <th><i class="fa fa-comments"></i></th>
-        <th><i class="fa fa-commenlyphicon-thumbs-up"></span></th>
-        <th><span class="glyphicon glyphicon-time"></span></th>
-=======
-        <th> 조회수 </th>
-        <th> 추천수 </th>
-        <th> 작성시간 </th>
->>>>>>> parent of 98d633b... 게시판 검색 기능 추가
-      </tr>
-
+    <!-- 새로운 css 게시판 -->
+    <div class="row">
       <% @posts.each do |post| %>
-        <tr>
-          <td><%= post.id %></td>
-<<<<<<< HEAD
-          <% if post.deleted_at == nil %>
-            <td><div class="shortTitle"><%= link_to "#{post.title}", post_path(post.id) %></div></td>
-          <% else %>
-            <td style="opacity:0.3;text-decoration:line-through"> 이미 삭제된 게시글 입니다.(24시간 이내 영구삭제)</td>
-          <% end %>
-          <td><%= post.user.present? ? post.user.nickname : "nil" %></td>
-=======
-          <td style="width:20%"><%= link_to "#{post.title}", post_path(post.id) %> </td>
-          <td><%= post.singer %></td>
-          <td><%= post.song %></td>
-          <td><%= post.user.present? ? post.user.email : "null" %></td>
->>>>>>> parent of 98d633b... 게시판 검색 기능 추가
-          <td><%= "#{post.unique_impression_count}" %></td>
-          <td><%= post.recom %></td>
-          <% if post.deleted_at == nil %>
-            <td><%= "#{time_ago_in_words(post.created_at)} 전" %></td>
-          <% else %>
-            <td><%= "#{post.deleted_at.to_s[0..18]} 에 삭제되었음" %></td>
-          <% end %>
-        </tr>
-      <% end %>
-    </table>
+        <div class="row" id="post_content">
+            <div class="col-sm-1">
+                <%= post.id %>
+            </div>
 
-    <%= link_to '<i class="fa fa-pencil" style="font-size:20px;"></i>'.html_safe, new_post_path, class: 'btn btn-primary pull-right' %>
+            <div class="col-sm-3">
+              <%= link_to "#{post.title}", posts_path %>
+            </div>
+
+            <div class="col-sm-2">
+              <%= post.user.present? ? post.user.nickname : "nil" %>
+            </div>
+
+
+            <div style="background-color:lightblue">
+              <div class="col-sm-1">
+                <i class="fa fa-eye"></i> <%= "#{post.unique_impression_count}" %>
+              </div>
+              <div class="col-sm-1">
+                <i class="fa fa-thumbs-up"></i> <%= post.recom %>
+              </div>
+              <div class="col-sm-1">
+                <i class="fa fa-comments"></i> <%= post.replies.count %>
+              </div>
+              <div class="col-sm-3">
+                <span class="glyphicon glyphicon-time"></span>
+                <%= "#{time_ago_in_words(post.created_at)} 전" %>
+              </div>
+            </div>
+
+          </tr>
+        </div>
+      <% end %>
+    </div>
+
+    <%= link_to '<i class="fa fa-pencil" style="font-size:20px;"></i>'.html_safe, new_post_path, class: 'btn btn-kono pull-right' %>
 
     <div class="row">
         <%= paginate @posts %>

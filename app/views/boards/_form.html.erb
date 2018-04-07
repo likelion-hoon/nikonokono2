@@ -1,18 +1,14 @@
-<%= form_with(model: @bulletin.present? ? [@board.bulletin, @board] : @board) do |f| %>
+<%= simple_form_for(@bulletin.present? ? [@board.bulletin, @board] : @board) do |f| %>
+  <%= f.error_notification %>
 
-  <div class="field">
-    <%= f.label "글 제목" %>
-    <%= f.text_field :title, id: :board_title, name: :title, class: "form-control" %>
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <%= f.input :content, input_html: { rows: 10 } %>
   </div>
 
-  <div class="field">
-    <%= f.label "글 내용" %>
-    <%= tinymce :language => "ko" %>
-    <%= f.text_area :content, id: :board_content, name: :content, class: "form-control tinymce", rows: "10", style: "min-height:200px" %>
-  </div>
-
-  <div class="actions">
-    <%= link_to '뒤로가기',(@bulletin.present? ? [board.bulletin, board] : board), class: "btn btn-warning", style: "color:white" %>
-    <%= f.submit "작성", class: "btn btn-success pull-right" %>
+  <div class="form-actions">
+    <%= f.button :submit %>
+    <%= link_to 'Show', @board, class: 'btn btn-default' if @board.persisted? %>
+    <%= link_to '목록', (@bulletin.present? ? bulletin_boards_path(@bulletin) : boards_path), class: 'btn btn-default' %>
   </div>
 <% end %>

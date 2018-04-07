@@ -1,3 +1,5 @@
+<p id="notice"><%= notice %></p>
+
 <p>
   <strong>Title:</strong>
   <%= @board.title %>
@@ -5,8 +7,9 @@
 
 <p>
   <strong>Content:</strong>
-  <%= @board.content.html_safe %>
+  <%= @board.content %>
 </p>
 
-<%= link_to 'Edit', edit_board_path(@board) %> |
-<%= link_to 'Back', boards_path %>
+<%= link_to 'Edit', (@bulletin.present? ? edit_bulletin_board_path(@bulletin)  : edit_board_path(@board)), class: 'btn btn-default' %>
+<%= link_to 'List', (@bulletin.present? ? bulletin_boards_path(@bulletin) : boards_path), class: 'btn btn-default' %>
+<%= link_to "돌아가기", :back, class: "btn btn-default" %>

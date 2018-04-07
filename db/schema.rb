@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20180326091641) do
+ActiveRecord::Schema.define(version: 20180407044612) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -30,15 +29,21 @@ ActiveRecord::Schema.define(version: 20180326091641) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "boards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "title"
+    t.text "content"
+    t.bigint "bulletin_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bulletin_id"], name: "index_boards_on_bulletin_id"
+  end
+
   create_table "bulletins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-=======
-ActiveRecord::Schema.define(version: 20180322042335) do
->>>>>>> parent of 98d633b... 게시판 검색 기능 추가
 
   create_table "impressions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "impressionable_type"
@@ -75,9 +80,7 @@ ActiveRecord::Schema.define(version: 20180322042335) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "bulletin_id"
     t.datetime "deleted_at"
-    t.index ["bulletin_id"], name: "index_posts_on_bulletin_id"
     t.index ["deleted_at"], name: "index_posts_on_deleted_at"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
@@ -120,18 +123,13 @@ ActiveRecord::Schema.define(version: 20180322042335) do
     t.datetime "updated_at", null: false
     t.string "provider"
     t.string "uid"
-<<<<<<< HEAD
     t.string "nickname"
     t.text "description"
-=======
-    t.string "name"
-    t.text "image"
->>>>>>> parent of 98d633b... 게시판 검색 기능 추가
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "posts", "bulletins"
+  add_foreign_key "boards", "bulletins"
   add_foreign_key "posts", "users"
   add_foreign_key "replies", "posts"
 end
