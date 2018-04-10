@@ -2,37 +2,8 @@
 <html>
   <head>
     <style type="text/css">
-      #panel4 {
-        border: 2px solid lightgray;
-        padding: 1px 20px;
-        margin-top: 20px;
-      }
 
-      #panel5 {
-        border: 2px solid lightgray;
-        padding: 1px 20px;
-        margin-top: 20px;
-      }
-
-      #panel6 {
-        border: 2px solid lightgray;
-        padding: 1px 20px;
-        margin-top: 20px;
-      }
-
-      #panel7 {
-        border: 2px solid lightgray;
-        padding: 1px 20px;
-        margin-top: 20px;
-      }
-
-      #panel8 {
-        border: 2px solid lightgray;
-        padding: 1px 20px;
-        margin-top: 20px;
-      }
-
-      #panel9 {
+      .panel {
         border: 2px solid lightgray;
         padding: 1px 20px;
         margin-top: 20px;
@@ -42,27 +13,21 @@
         background-color : #dedede;
       }
 
-      h3 {
-        background-color: #333;
-        color: orange;
-        border-radius: 5px;
-        padding: 3px 0px 3px 10px;
-      }
     </style>
   </head>
   <body>
 
     <div class="container">
-      <!-- 두 번째 줄 -->
+      <!-- 첫 번째 줄 -->
       <div class="row">
         <div class="col-sm-4">
-          <div id="panel4" class="panel">
+          <div class="panel">
             <h3> 공지사항 </h3>
           </div>
         </div>
 
         <div class="col-sm-4">
-          <div id="panel5" class="panel">
+          <div class="panel">
             <h3> 노래 업로드 게시판 </h3>
             <% @posts.each do |post| %>
               <p><i class="fa fa-caret-right"></i>&nbsp;<%= link_to "#{post.title}", posts_path %></p>
@@ -71,8 +36,48 @@
         </div>
 
         <div class="col-sm-4">
-          <div id="panel6" class="panel">
-            <h3> 로그인 정보 </h3>
+          <div class="panel">
+            <% unless user_signed_in? %>
+             <div>
+              <%= link_to '로그인 하러 가기'.html_safe, new_user_session_path, class: "btn btn-primary", style: "margin-left:20px;" %>
+              <p style="text-align:center;"> 해당 서비스를 이용하시려면 로그인 해주세요 </p>
+            </div>
+            <% else %>
+              <h3> 로그인 정보 </h3>
+              <p> <%= current_user.nickname %> 님 안녕하세요! </p>
+              <p> 로그인 횟수 : <%= current_user.sign_in_count %> </p>
+              <p> 최근 로그인 한 시간 : <%= current_user.last_sign_in_at %></p>
+              <p> 최근 로그인 한 ip : <%= current_user.last_sign_in_ip %> </p>
+              <p> 현재 로그인 한 시간 : <%= current_user.current_sign_in_at %></p>
+              <p> 현재 ip : <%= current_user.current_sign_in_ip %> </p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <!-- 두 번째 줄 -->
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="panel">
+            <h3> 자유게시판 </h3>
+            <% sendBulletin(1).each do |board| %>
+              <p><i class="fa fa-caret-right"></i>&nbsp;<%= link_to "#{board.title}", [board.bulletin, board] %></p>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="panel">
+            <h3> QnA게시판 </h3>
+            <% sendBulletin(2).each do |board| %>
+              <p><i class="fa fa-caret-right"></i>&nbsp;<%= link_to "#{board.title}", [board.bulletin, board] %></p>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="panel">
+            <h3> 활동왕 순위 </h3>
           </div>
         </div>
       </div>
@@ -80,20 +85,26 @@
       <!-- 세 번째 줄 -->
       <div class="row">
         <div class="col-sm-4">
-          <div id="panel7" class="panel">
-            <h3> 자유게시판 </h3>
+          <div class="panel">
+            <h3> 노래 추천 게시판 </h3>
+            <% sendBulletin(3).each do |board| %>
+              <p><i class="fa fa-caret-right"></i>&nbsp;<%= link_to "#{board.title}", [board.bulletin, board] %></p>
+            <% end %>
           </div>
         </div>
 
         <div class="col-sm-4">
-          <div id="panel8" class="panel">
-            <h3> QnA게시판 </h3>
+          <div class="panel">
+            <h3> 노래방 추천 게시판 </h3>
+            <% sendBulletin(4).each do |board| %>
+              <p><i class="fa fa-caret-right"></i>&nbsp;<%= link_to "#{board.title}", [board.bulletin, board] %></p>
+            <% end %>
           </div>
         </div>
 
         <div class="col-sm-4">
-          <div id="panel9" class="panel">
-            <h3> 활동왕 순위 </h3>
+          <div class="panel">
+            <h3> 미정 </h3>
           </div>
         </div>
       </div>

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   # controller showme routing
   get 'showme/main'
   get 'showme/rank'
+  get 'showme/mypage'
   post 'showme/reply_write' => 'showme#reply_write'
   get 'showme/recommend/:id' => 'showme#recommend', as: 'showme_recommend'
   get 'showme/reply_delete/:reply_id' => 'showme#reply_delete'

@@ -5,9 +5,18 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# 파일업로드 처리 lib
+gem "paperclip"
+
+# 이미지 처리 lib
+gem "mini_magick"
+
+# 간단한 from 양식을 위한 lib
 gem 'simple_form'
 
+# 게시글 삭제 기록 남기기 lib
 gem 'paranoia', '~> 2.2'
+
 # devise 한글화 lib
 gem 'devise-i18n'
 

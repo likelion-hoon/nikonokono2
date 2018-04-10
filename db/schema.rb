@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180407044612) do
+ActiveRecord::Schema.define(version: 20180410084118) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -33,9 +33,11 @@ ActiveRecord::Schema.define(version: 20180407044612) do
     t.string "title"
     t.text "content"
     t.bigint "bulletin_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["bulletin_id"], name: "index_boards_on_bulletin_id"
+    t.index ["user_id"], name: "index_boards_on_user_id"
   end
 
   create_table "bulletins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -125,11 +127,16 @@ ActiveRecord::Schema.define(version: 20180407044612) do
     t.string "uid"
     t.string "nickname"
     t.text "description"
+    t.string "avatar_file_name"
+    t.string "avatar_content_type"
+    t.integer "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "boards", "bulletins"
+  add_foreign_key "boards", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "replies", "posts"
 end

@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row">
+      <!-- 회원 사진 -->
+      <div class="col-sm-4 panel">
+        <h3> 회원 사진란 </h3>
+      </div>
+
+      <!-- 회원 정보 -->
+      <div class="col-sm-offset-2 col-sm-6 panel">
+        <h3> 회원 정보 </h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- user가 작성한 게시글 -->
+      <div class="col-sm-6 panel">
+        <h3> user가 작성한 게시글 </h3>
+        <div class="postsOfUsers">
+          <% @posts.each do |post| %>
+            <p> <%= post.title %></p>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- user가 작성한 댓글 -->
+      <div class="col-sm-6 panel">
+        <h3> user가 작성한 댓글 </h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="modify" style="text-align:center;">
+        <%= link_to "회원정보수정", root_path, class: "btn btn-primary" %>
+        <%= link_to "메인페이지", root_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+</div>

@@ -65,26 +65,26 @@ Bulletin.create(title: '노래추천 게시판', description: '노래추천 게�
 Bulletin.create(title: '노래방 추천', description: '노래방 추천')
 
 # bulletin_id : 1, 자유 게시판 seed 작업
-Board.create(title: '안녕하세요, 운영자 입니다.', content: '2018년 5월 니코노코노의 서비스를 정식 개시합니다!', bulletin_id:1)
-Board.create(title: '괜찮은 홈페이지 같네요', content: '노래를 업로드 하기 위해 열심히 연습하겠습니다.', bulletin_id:1)
-Board.create(title: '아직 베타버전인거 같네요', content: '더 나은 서비스 기대합니다.', bulletin_id:1)
-Board.create(title: '안되는게 많네요 -,-', content: '유투브로도 업로드 할 수 있게 해주세요ㅠ', bulletin_id:1)
-Board.create(title: '안녕하세요, 오늘 처음 가입했네요', content: '다른 사람들의 노래를 들을 수 있다니 좋네요 ㅎㅎㅎ', bulletin_id:1)
+Board.create(title: '안녕하세요, 운영자 입니다.', content: '2018년 5월 니코노코노의 서비스를 정식 개시합니다!', bulletin_id:1, user_id:1)
+Board.create(title: '괜찮은 홈페이지 같네요', content: '노래를 업로드 하기 위해 열심히 연습하겠습니다.', bulletin_id:1, user_id:2)
+Board.create(title: '아직 베타버전인거 같네요', content: '더 나은 서비스 기대합니다.', bulletin_id:1, user_id:3)
+Board.create(title: '안되는게 많네요 -,-', content: '유투브로도 업로드 할 수 있게 해주세요ㅠ', bulletin_id:1, user_id:4)
+Board.create(title: '안녕하세요, 오늘 처음 가입했네요', content: '다른 사람들의 노래를 들을 수 있다니 좋네요 ㅎㅎㅎ', bulletin_id:1, user_id:1)
 
 # bullentin_id : 2, QnA 게시판 seed 작업
-Board.create(title: 'wmv 파일은 업로드가 안되나요?', content: '궁금해서 질문 올립니다!', bulletin_id:2)
-Board.create(title: '3위 안에 들면 상품이 따로 있나요?', content: '명예의 전당이라는 것이 있길래..', bulletin_id:2)
-Board.create(title: 'kakao 로그인도 만들어 주시면 안될까요', content: '대부분 카카오 아이디로 로그인 하고 있어서..', bulletin_id:2)
-Board.create(title: '마이 프로필 기능을 추가 질문입니다.', content: '좀 더 항목이 늘어났으면 좋겠네요', bulletin_id:2)
-Board.create(title: '정식 버전은 언제 나오나요??', content: '궁금합니다!', bulletin_id:2)
+Board.create(title: 'wmv 파일은 업로드가 안되나요?', content: '궁금해서 질문 올립니다!', bulletin_id:2, user_id:2)
+Board.create(title: '3위 안에 들면 상품이 따로 있나요?', content: '명예의 전당이라는 것이 있길래..', bulletin_id:2, user_id:3)
+Board.create(title: 'kakao 로그인도 만들어 주시면 안될까요', content: '대부분 카카오 아이디로 로그인 하고 있어서..', bulletin_id:2, user_id:4)
+Board.create(title: '마이 프로필 기능을 추가 질문입니다.', content: '좀 더 항목이 늘어났으면 좋겠네요', bulletin_id:2, user_id:1)
+Board.create(title: '정식 버전은 언제 나오나요??', content: '궁금합니다!', bulletin_id:2, user_id:2)
 
 # bullentin_id : 3, 노래추천 게시판 seed 작업
-Board.create(title: '노래추천합니다.', content: '나얼 - 바람기억', bulletin_id:3)
-Board.create(title: '임창정 노래 추천합니다.', content: ' 13집에 있는 노래는 다 좋아요 ', bulletin_id:3)
-Board.create(title: '노래추천!', content: '레드벨벳 - 빨간맛', bulletin_id:3)
-Board.create(title: '이 게시판 딱히 필요할까요..', content: '게시판 종류가 너무 많네요', bulletin_id:3)
-Board.create(title: '여기서 많은 노래 추천 받고 갑니다!', content: '저도 추천할게요. 거미 - 기억상실', bulletin_id:3)
+Board.create(title: '노래추천합니다.', content: '나얼 - 바람기억', bulletin_id:3, user_id:3)
+Board.create(title: '임창정 노래 추천합니다.', content: ' 13집에 있는 노래는 다 좋아요 ', bulletin_id:3, user_id:4)
+Board.create(title: '노래추천!', content: '레드벨벳 - 빨간맛', bulletin_id:3, user_id:1)
+Board.create(title: '이 게시판 딱히 필요할까요..', content: '게시판 종류가 너무 많네요', bulletin_id:3, user_id:2)
+Board.create(title: '여기서 많은 노래 추천 받고 갑니다!', content: '저도 추천할게요. 거미 - 기억상실', bulletin_id:3, user_id:3)
 
 # bullentin_id : 4, 노래방추천 게시판 seed 작업
-Board.create(title: '공릉동 노래방 추천', content: '오키도키 노래방 추천합니다.', bulletin_id:4)
-Board.create(title: '공릉동 노래방 추천2', content: '엣지 노래방 추천 합니다.', bulletin_id:4)
+Board.create(title: '공릉동 노래방 추천', content: '오키도키 노래방 추천합니다.', bulletin_id:4, user_id:4)
+Board.create(title: '공릉동 노래방 추천2', content: '엣지 노래방 추천 합니다.', bulletin_id:4, user_id:1)

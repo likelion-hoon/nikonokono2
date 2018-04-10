@@ -1,14 +1,14 @@
 class ShowmeController < ApplicationController
 
   # showme 컨트롤러에 접속하려면 user를 인증받아야 한다.
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:main]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :log_impression, only: [:show]
 
   respond_to :html
 
   def main
-    @posts = Post.all.where(id: 1..5)
+    @posts = Post.all.order("created_at desc").limit(5)
   end
 
   def index
@@ -134,6 +134,12 @@ class ShowmeController < ApplicationController
   # 노래 순위 액션
   def rank
 
+  end
+
+  # 마이 프로필 페이지 액션
+  def mypage
+    @posts = User.find(current_user.id).posts.all
+    @posts = User.find(current_user.id).boards.all
   end
 
   # 사용할 메서드 정의
