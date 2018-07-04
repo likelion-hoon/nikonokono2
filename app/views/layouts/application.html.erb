@@ -9,77 +9,75 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" aria-controls="navbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/showme/main"> Nikonokono <i class="fa fa-microphone"></i></a>
+    <% unless @skip_nav %>
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" aria-controls="navbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/showme/main"> Nikonokono <i class="fa fa-microphone"></i></a>
+          </div>
+
+          <!-- jQuery 없이는 dropdown-toggle이 작동하지 않는다.  -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li>
+                <%= link_to '<i class="fa fa-bullhorn"></i> 공지사항'.html_safe, root_path %>
+              </li>
+
+              <li>
+                <%= link_to '<i class="fa fa-upload"></i> 노래 업로드'.html_safe, posts_path %>
+              </li>
+
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">게시판<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                      <li><%= link_to '자유게시판', bulletin_boards_path(1) %></li>
+                      <li><%= link_to 'QnA게시판', bulletin_boards_path(2) %></li>
+                      <li><%= link_to '노래추천 게시판', bulletin_boards_path(3) %></li>
+                  </ul>
+              </li>
+
+              <li>
+                <%= link_to '<span class="glyphicon glyphicon-map-marker"></span> 위치 찾기'.html_safe, map_map_path %>
+              </li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <a href="#">
+                  <% if user_signed_in? %>
+                    <%= current_user.nickname %>
+                  <% end %>
+                </a>
+              </li>
+              <li class="dropdown">
+                <% if user_signed_in? %>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-align-justify"></span></a>
+                <% else %>
+                  <%= link_to '<i class="fa fa-sign-in" style="font-size:20px"></i>'.html_safe, new_user_session_path %>
+                <% end %>
+
+                <ul class="dropdown-menu">
+                    <li><%= link_to '<span class="glyphicon glyphicon-log-out"></span> 로그아웃'.html_safe, destroy_user_session_path %></li>
+                    <li><%= link_to '<i class="fa fa-user"></i>  나의 프로필'.html_safe, showme_mypage_path if user_signed_in? %></li>
+                </ul>
+              </li>
+            </ul>  <!-- navbar-right의 끝 -->
+          </div>   <!-- collapse navbar-collapse 의 끝-->
         </div>
 
-        <!-- jQuery 없이는 dropdown-toggle이 작동하지 않는다.  -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li>
-              <%= link_to '<i class="fa fa-bullhorn"></i> 공지사항'.html_safe, root_path %>
-            </li>
+        <!-- /.container-fluid -->
+      </nav>
 
-            <li>
-              <%= link_to '<i class="fa fa-upload"></i> 노래 업로드'.html_safe, posts_path %>
-            </li>
-
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">게시판<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><%= link_to '자유게시판', bulletin_boards_path(1) %></li>
-                    <li><%= link_to 'QnA게시판', bulletin_boards_path(2) %></li>
-                    <li><%= link_to '노래추천 게시판', bulletin_boards_path(3) %></li>
-                    <li><%= link_to '노래방추천 게시판', bulletin_boards_path(4) %></li>
-                </ul>
-            </li>
-
-            <li>
-              <%= link_to '<span class="glyphicon glyphicon-map-marker"></span> 위치 찾기'.html_safe, map_map_path %>
-            </li>
-
-            <li>
-              <%= link_to '<i class="fa fa-music"></i> 노래 순위'.html_safe, showme_rank_path %>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li>
-              <a href="#">
-                <% if user_signed_in? %>
-                  <%= current_user.nickname %>
-                <% end %>
-              </a>
-            </li>
-            <li class="dropdown">
-              <% if user_signed_in? %>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-align-justify"></span></a>
-              <% else %>
-                <%= link_to '<i class="fa fa-sign-in" style="font-size:20px"></i>'.html_safe, new_user_session_path %>
-              <% end %>
-
-              <ul class="dropdown-menu">
-                  <li><%= link_to '<span class="glyphicon glyphicon-log-out"></span> 로그아웃'.html_safe, destroy_user_session_path %></li>
-                  <li><%= link_to '<i class="fa fa-user"></i>  나의 프로필'.html_safe, showme_mypage_path if user_signed_in? %></li>
-              </ul>
-            </li>
-          </ul>  <!-- navbar-right의 끝 -->
-        </div>   <!-- collapse navbar-collapse 의 끝-->
+      <div class="container" style="text-align:center;">
+        <%= render partial: "shared/flash_messages", flash: flash %>
       </div>
-
-      <!-- /.container-fluid -->
-    </nav>
-
-    <div class="container" style="text-align:center;">
-      <%= render partial: "shared/flash_messages", flash: flash %>
-    </div>
+    <% end %>
     <%= yield %>
 </body>
 </html>

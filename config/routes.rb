@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get 'map/map' => "map#map"
 
   # controller showme routing
+
+  get 'showme/index' => "showme#index"
   get 'showme/main'
   get 'showme/rank'
   get 'showme/mypage'

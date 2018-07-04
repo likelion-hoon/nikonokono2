@@ -8,6 +8,7 @@ class ShowmeController < ApplicationController
   respond_to :html
 
   def main
+    @skip_nav = true
     @posts = Post.all.order("created_at desc").limit(5)
   end
 

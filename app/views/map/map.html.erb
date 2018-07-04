@@ -22,7 +22,7 @@
               map = new Tmap.Map({
                   div:'map_div',
                   width:'100%',
-                  height:'771px'
+                  height:'100vh'
               });
 
               /* map.addControls 위치 바뀌면 안됨 */
@@ -211,12 +211,12 @@
             <div class="map_form">
               <form id="find" action="#" method="POST">
                   <div class="startLoc">
-                    <input type="text" class="form-control input-sm" id="fromLoc" name="fromLoc" placeholder="출발 위치"/>
+                    <input type="search" class="form-control input-sm" id="fromLoc" name="fromLoc" placeholder="출발 위치"/>
                     <a href="#" class="btn btn-sm btn-primary" id="setCurLoc"> 현재위치 </a>
                   </div>
 
                   <div class="endLoc">
-                    <input type="text" class="form-control input-sm" id="toLoc" name="toLoc" placeholder="도착 위치" />
+                    <input type="search" class="form-control input-sm" id="toLoc" name="toLoc" placeholder="도착 위치" />
                     <button type="submit" id="findRoad" class="btn btn-sm btn-primary">길 찾기 </button>
                   </div>
               </form>
@@ -237,6 +237,7 @@
                  <a onClick="zoomOut()" class="btn btn-sm btn-warning">축소</a>
                  <a onClick="removeZoomButton()" class="btn btn-sm btn-warning">맵에 줌버튼을 제거</a>
                  <a onClick="addZoomButton()" class="btn btn-sm btn-warning">맵에 primary 추가</a>
+                 <a href="/showme/main" class="btn btn-sm btn-warning"> 메인 메뉴로 이동 </a>
             </div>
           </div>
         </aside>
