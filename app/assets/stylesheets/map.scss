@@ -37,7 +37,19 @@
     float: left;
     width: 20%;
     height: 100vh;
-    background-color: #444;
+    background: linear-gradient(to top left, #e99b0a 15%, #a87b27ee 36%, rgb(107, 80, 46) 55%, rgb(63, 57, 57) 70%, rgb(26, 24, 24) 86%);
+
+    h1{
+      color: #ffa500;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    > #button_list_line {
+      color: #ffa500;
+      text-align: center;
+      margin-top: 300px;
+    }
 
     .map_form {
       margin-top:10px;
@@ -48,7 +60,8 @@
     }
 
     .button_list {
-      margin-top:50px;
+      margin-top: 10px;
+      margin-left: 15px;
     }
 
     input[type=search] {

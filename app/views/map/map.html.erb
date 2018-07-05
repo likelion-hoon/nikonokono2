@@ -6,7 +6,6 @@
 
         <!-- tmap api 등록 -->
         <script src="https://api2.sktelecom.com/tmap/js?version=1&format=javascript&appKey=6a71ac68-585d-4a6e-8f1d-3a6182dee409"></script>
-
         <script type="text/javascript">
           // 전역 변수 설정
           var map, marker, markerLayer;
@@ -208,6 +207,9 @@
     <body>
       <div id="wrap">
         <aside>
+            <div class="first_tap">
+              <h1> Nikonokono <i class="fa fa-map-marker"></i></h1>
+            </div>
             <div class="map_form">
               <form id="find" action="#" method="POST">
                   <div class="startLoc">
@@ -229,15 +231,16 @@
 
             </div>
 
-            <hr>
+            <hr id="button_list_line">
 
             <div class="button_list">
-                 <a onClick="toCurrentLocation()" class="btn btn-sm btn-warning"> 현재 위치로 이동 </a>
-                 <a onClick="zoomIn()" class="btn btn-sm btn-warning">확대</a>
-                 <a onClick="zoomOut()" class="btn btn-sm btn-warning">축소</a>
-                 <a onClick="removeZoomButton()" class="btn btn-sm btn-warning">맵에 줌버튼을 제거</a>
-                 <a onClick="addZoomButton()" class="btn btn-sm btn-warning">맵에 primary 추가</a>
-                 <a href="/showme/main" class="btn btn-sm btn-warning"> 메인 메뉴로 이동 </a>
+                 <a onClick="toCurrentLocation()" class="btn btn-sm btn-primary"> 현재 위치로 이동 </a>
+                 <a onClick="zoomIn()" class="btn btn-sm btn-primary"><i class="fa fa-search-plus" style="font-size:20px;"></i></a>
+                 <a onClick="zoomOut()" class="btn btn-sm btn-primary"><i class="fa fa-search-minus" style="font-size:20px;"></i></a>
+                 <a onClick="removeZoomButton()" class="btn btn-sm btn-primary">맵에 줌버튼 제거</a>
+                 <a onClick="addZoomButton()" class="btn btn-sm btn-primary">맵에 줌버튼 추가</a>
+                 <a href="/showme/main" class="btn btn-sm btn-primary"> 메인 메뉴로 이동 </a>
+                 <a onClick="window.location.reload()" class="btn btn-sm btn-primary"> 새로고침 </a>
             </div>
           </div>
         </aside>
